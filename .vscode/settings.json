@@ -6,10 +6,10 @@
     "activityBarBadge.background": "#76092d",
     "activityBarBadge.foreground": "#e7e7e7",
     "sash.hoverBorder": "#185ded",
-    "statusBar.background": "#0f49c3",
+    "statusBar.background": "#171e2d",
     "statusBar.foreground": "#e7e7e7",
     "statusBarItem.hoverBackground": "#185ded",
-    "statusBarItem.remoteBackground": "#0f49c3",
+    "statusBarItem.remoteBackground": "#171e2d",
     "statusBarItem.remoteForeground": "#e7e7e7",
     "commandCenter.border": "#e7e7e799"
   },
