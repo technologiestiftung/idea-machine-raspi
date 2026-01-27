@@ -1,7 +1,7 @@
 """
 Hilfsfunktionen für Text-Verarbeitung und Drucker-Formatierung
 """
-
+import textwrap
 from datetime import datetime
 
 
@@ -35,18 +35,14 @@ def format_for_printer(text, gelb_begriff, blau_begriff, pink_begriff, width=26)
     lines.append("")
     
     # Text umbrechen (Wörter nicht abschneiden)
-    words = text.split()
-    current_line = ""
-    
-    for word in words:
-        if len(current_line) + len(word) + 1 <= width:
-            current_line += word + " "
-        else:
-            lines.append(current_line.strip())
-            current_line = word + " "
-    
-    if current_line:
-        lines.append(current_line.strip())
+    wrapped_lines = textwrap.wrap(
+        text,
+        width=width,
+        break_long_words=True,   # trennt lange Wörter
+        break_on_hyphens=True    # trennt bei "-"
+    )
+
+    lines.extend(wrapped_lines)
     
     lines.append("")
     lines.append("-" * width)

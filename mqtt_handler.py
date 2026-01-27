@@ -21,26 +21,28 @@ def on_disconnect(client, userdata, rc):
     print("MQTT Verbindung verloren")
 
 
+
 def on_message(client, userdata, message):
     payload = message.payload.decode().strip()
     
-    topic_handlers = {
-        "dice/gelb": lambda: dice_update("gelb", value=payload),
-        "dice/blau": lambda: dice_update("blau", value=payload),
-        "dice/pink": lambda: dice_update("pink", value=payload),
-        "dice/gelb/status": lambda: dice_update("gelb", status=payload),
-        "dice/blau/status": lambda: dice_update("blau", status=payload),
-        "dice/pink/status": lambda: dice_update("pink", status=payload),
-    }
-    
-    handler = topic_handlers.get(message.topic)
-    if handler:
-        handler()
-        farbe = message.topic.split("/")[1]
-        if "status" not in message.topic:
-            print(f"{farbe.capitalize()} Würfel: {payload} -> {get_dice_begriff(farbe)}")
-        else:
-            print(f"Status {farbe.capitalize()} Würfel: {payload}")
+    if message.topic == "dice/gelb":
+        dice_update("gelb", value=payload)
+        print(f"gelb dice: {payload} -> {get_dice_begriff('gelb')}")
+    elif message.topic == "dice/blau":
+        dice_update("blau", value=payload)
+        print(f"Blauer Würfel: {payload} -> {get_dice_begriff('blau')}")
+    elif message.topic == "dice/pink":
+        dice_update("pink", value=payload)
+        print(f"Pinker Würfel: {payload} -> {get_dice_begriff('pink')}")
+    elif message.topic == "dice/gelb/status":
+        dice_update("yellow", status=payload)
+        print(f"Status yellow Würfel: {payload}")
+    elif message.topic == "dice/blau/status":
+        dice_update("blau", status=payload)
+        print(f"Status Blauer Würfel: {payload}")
+    elif message.topic == "dice/pink/status":
+        dice_update("pink", status=payload)
+        print(f"Status Pinker Würfel: {payload}")
     else:
         print(f"Unbekanntes Thema: {message.topic}")
 
