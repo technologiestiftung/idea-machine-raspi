@@ -6,29 +6,29 @@ state = {
     "button": {"pressed": False, "last_press": None},
     
     "dice": {
-        "gelb": {"value": None, "status": "disconnected","mapping":{
+        "gelb": {"value": None, "status": "disconnected","mapping":{#orange
             "1": "Wohnen",
-            "2": "Mobilitaet & Verkehr",
-            "3": "Oeffentlicher Raum",
-            "4": "Energie",
-            "5": "Klimaschutz",
+            "2": "Verkehr & Fortbewegung",
+            "3": "Stadtgestaltung",#Oeffentlicher Raum & Stadgestaltung
+            "4": "Miteinander & Gemeinschaft",#Energie
+            "5": "Digitale Stadt",#Klimaschutz
             "6": "?"
         }},
         "blau": {"value": None, "status": "disconnected","mapping":{
             "1": "Buerger:innen",
-            "2": "Verwaltungsangestellte",
-            "3": "Marginalisierte Gruppe",
+            "2": "Kinder & Jugendliche",#Verwaltungsangestellte
+            "3": "Verwaltungspersonal",#Marginalisierte Gruppe
             "4": "Forscher:innen",
-            "5": "Unternehmer:innen",
+            "5": "Schwaechere Gruppen",#Unternehmer:innen
             "6": "?"
         }},        
-        "pink": {"value": None, "status": "disconnected","mapping":{
-            "1": "Mixed Reality",
-            "2": "Machine learning & AI",
-            "3": "Website & App",
-            "4": "IoT",
-            "5": "?",
-            "6": "Kunstinstallation"
+        "pink": {"value": None, "status": "disconnected","mapping":{#beige
+            "1": "Computerintelligenz & Daten",#Mixed Reality
+            "2": "Web & Apps",#Machine learning & AI
+            "3": "Vernetzte Geraete & Sensoren",#Website & App
+            "4": "Spielerische Technik",#IoT
+            "5": "Virtuelle Erweiterung der Realitaet",#"?"
+            "6": "?"#Kunstinstallation
         }},
     }
 }

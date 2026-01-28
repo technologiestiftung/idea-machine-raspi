@@ -10,7 +10,7 @@ SENSOR_PIN = 17
 
 # Drucker
 PRINTER_NAME = "Termo"
-PRINTER_WIDTH = 26  # Zeichen für 58mm Thermodrucker
+PRINTER_WIDTH = 32 # Zeichen für 58mm Thermodrucker
 
 # OpenAI
 MAX_CHARS = 350

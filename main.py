@@ -3,6 +3,7 @@ import time
 from openai import OpenAI
 import os
 
+
 from state import button_pressed, state, get_dice_begriff
 from config import broker_ip, api_key
 from constants import SENSOR_PIN, PRINTER_NAME, PRINTER_WIDTH
