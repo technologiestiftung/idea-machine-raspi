@@ -1,11 +1,12 @@
 """
 MQTT Handler für Würfel-Kommunikation
 """
-
+import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 import threading
 from state import dice_update, get_dice_begriff
-
+from state import state, dice_update 
+from constants import YELLOW_DICE_LED, PINK_DICE_LED, BLUE_DICE_LED, BUTTON_GREEN_LED
 
 def on_connect(client, userdata, flags, rc):
     print("MQTT verbunden")
@@ -35,14 +36,36 @@ def on_message(client, userdata, message):
         dice_update("pink", value=payload)
         print(f"Pinker Würfel: {payload} -> {get_dice_begriff('pink')}")
     elif message.topic == "dice/gelb/status":
-        dice_update("yellow", status=payload)
-        print(f"Status yellow Würfel: {payload}")
+        dice_update("gelb", status=payload)
+        if state["dice"]["gelb"]["status"] == "verbunden":
+            GPIO.output(YELLOW_DICE_LED, GPIO.HIGH)
+            print("Gelber Würfel ist verbunden")
+        elif state["dice"]["gelb"]["status"] == "getrennt":
+            GPIO.output(YELLOW_DICE_LED, GPIO.LOW)
+            print("Blauer Würfel NICHT verbunden")
+        else:    
+            print(f"Status yellow Würfel: {payload}")
     elif message.topic == "dice/blau/status":
         dice_update("blau", status=payload)
-        print(f"Status Blauer Würfel: {payload}")
+        if state["dice"]["blau"]["status"] == "verbunden":
+            GPIO.output(BLUE_DICE_LED, GPIO.HIGH)
+            print("Baluer Würfel ist verbunden")
+        elif state["dice"]["blau"]["status"] == "getrennt":
+            GPIO.output(BLUE_DICE_LED, GPIO.LOW)
+            print("Blauer Würfel NICHT verbunden")
+        else:    
+            print(f"Status Blauer Würfel: {payload}")
     elif message.topic == "dice/pink/status":
         dice_update("pink", status=payload)
-        print(f"Status Pinker Würfel: {payload}")
+        if state["dice"]["pink"]["status"] == "verbunden":
+            GPIO.output(PINK_DICE_LED, GPIO.HIGH)
+            print("Pinker Würfel ist verbunden")
+        elif state["dice"]["pink"]["status"] == "getrennt":
+            GPIO.output(PINK_DICE_LED, GPIO.LOW)
+            print("Pink Würfel NICHT verbunden")
+        else:    
+            print(f"Status Pinker Würfel: {payload}")
+            print(f"Status Pinker Würfel: {payload}")
     else:
         print(f"Unbekanntes Thema: {message.topic}")
 

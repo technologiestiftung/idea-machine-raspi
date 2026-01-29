@@ -5,6 +5,8 @@ import textwrap
 from datetime import datetime
 from constants import PRINTER_WIDTH
 import subprocess
+import RPi.GPIO as GPIO
+import time
 
 ESC_RESET = "\x1b@"
 
@@ -35,7 +37,7 @@ def format_for_printer(text, gelb_begriff, blau_begriff, pink_begriff, width=PRI
     
     def add_begriff(begriff):
         # Lange Begriffe manuell splitten
-        if begriff in ["Virtuelle Erweiterung der Realitaet", "Vernetzte Geraete & Sensoren"]:
+        if begriff in ["Virtuelle Erweiterung der Realitaet"]:#, "Vernetzte Geraete & Sensoren"]:
             parts = begriff.split()
             mid = len(parts)//2
             lines.append(" ".join(parts[:mid]).center(width))
@@ -101,3 +103,11 @@ Topic areas:
     }
     
     return [system_message, user_message]
+
+
+def blink(led_pin, event):
+    while event.is_set():
+        GPIO.output(led_pin, GPIO.HIGH)
+        time.sleep(0.3)
+        GPIO.output(led_pin, GPIO.LOW)
+        time.sleep(0.3)    

@@ -3,7 +3,11 @@ Konfigurationskonstanten für das Ideenwürfel-Projekt
 """
 
 # GPIO
-SENSOR_PIN = 17
+BUTTON_PIN = 4
+BUTTON_GREEN_LED = 23
+YELLOW_DICE_LED = 17
+PINK_DICE_LED = 27
+BLUE_DICE_LED = 22
 
 # MQTT
 # (broker_ip wird aus config.py importiert)
