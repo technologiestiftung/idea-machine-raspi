@@ -1,10 +1,9 @@
-import os
 import threading
 import time
 
 import RPi.GPIO as GPIO
 
-from config import broker_ip
+from config import BROKER_IP
 from constants import (BLUE_DICE_LED, BUTTON_GREEN_LED, BUTTON_PIN,
                        PINK_DICE_LED, YELLOW_DICE_LED)
 from mqtt_handler import setup_mqtt
@@ -33,7 +32,7 @@ GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
 
 
 # MQTT Setup
-mqtt_client = setup_mqtt(broker_ip)
+mqtt_client = setup_mqtt(BROKER_IP)
 
 # ============ MAIN LOOP ============
 
@@ -78,7 +77,7 @@ try:
 
             # Button zurücksetzen - hier kannst du die LED steuern
             state["button"]["pressed"] = False
-            
+
             # TODO: LED anschalten
             blink_event.clear()
             if blink_thread is not None:

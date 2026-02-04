@@ -4,19 +4,17 @@ from datetime import datetime
 from escpos.printer import Usb
 from openai import OpenAI
 
-from config import api_key
+from config import API_KEY, LOGO_PATH, PROJECT_SUBTITLE, PROJECT_TITLE
 from utils import generate_ai_prompt, process_image_for_print
 
 
 def handle_print(term_city_theme, term_target_group, term_technologies):
     # OpenAI Client
-    openai_client = OpenAI(api_key=api_key)
+    openai_client = OpenAI(api_key=API_KEY)
 
     LINE_WIDTH = 32
 
     # -------- TEXT GENERATION --------
-    title = "KI-Würfel Zukunftswerk"
-    subtitle = "ZUKUNFSWERK WIESBADEN"
     headline = "Verwendete Begriffe:"
 
     # generate AI text
@@ -41,7 +39,7 @@ def handle_print(term_city_theme, term_target_group, term_technologies):
     p.hw("init")
 
     # Bild für Thermaldrucker vorbereiten
-    processed_image = process_image_for_print("assets/logo.png", target_width=384)
+    processed_image = process_image_for_print(LOGO_PATH, target_width=384)
 
     # Druck
     if processed_image:
@@ -54,7 +52,7 @@ def handle_print(term_city_theme, term_target_group, term_technologies):
     # Trennlinie + Title
     p.set(align='center')
     p.text("=" * LINE_WIDTH + "\n")
-    p.text(f"{title}\n{subtitle}\n")
+    p.text(f"{PROJECT_TITLE}\n{PROJECT_SUBTITLE}\n")
     p.text("=" * LINE_WIDTH + "\n\n")
 
     # Begriffe mit Umbruch
