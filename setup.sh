@@ -49,10 +49,10 @@ echo "Testdruck:"
 echo "Hallo Test" | lp -d Termo
 
 echo "=== Python venv erstellen ==="
-python3 -m venv --system-site-packages /home/wiesbaden2026/idea-machine-raspi-wiesbaden/wiesbaden-env
+python3 -m venv --system-site-packages "$SCRIPT_DIR/wiesbaden-env"
 
 echo "=== Python Pakete installieren ==="
-source /home/wiesbaden2026/idea-machine-raspi-wiesbaden/wiesbaden-env/bin/activate
+source "$SCRIPT_DIR/wiesbaden-env/bin/activate"
 pip install --upgrade pip
 pip install -r requirements.txt
 
