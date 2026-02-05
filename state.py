@@ -1,5 +1,5 @@
-import time
 import random
+import time
 
 state = {
     "last_update": None,
@@ -15,19 +15,19 @@ state = {
             "6": "?"
         }},
         "blau": {"value": None, "status": "disconnected","mapping":{
-            "1": "Buerger:innen",
+            "1": "Bürger:innen",
             "2": "Kinder & Jugendliche",#Verwaltungsangestellte
             "3": "Verwaltungspersonal",#Marginalisierte Gruppe
             "4": "Forscher:innen",
-            "5": "Schwaechere Gruppen",#Unternehmer:innen
+            "5": "Schwächere Gruppen",#Unternehmer:innen
             "6": "?"
         }},        
         "pink": {"value": None, "status": "disconnected","mapping":{#beige
             "1": "Computerintelligenz & Daten",#Mixed Reality
             "2": "Web & Apps",#Machine learning & AI
-            "3": "Vernetzte Geraete & Sensoren",#Website & App
+            "3": "Vernetzte Geräte & Sensoren",#Website & App
             "4": "Spielerische Technik",#IoT
-            "5": "Virtuelle Erweiterung der Realitaet",#"?"
+            "5": "Virtuelle Erweiterung der Realität",#"?"
             "6": "?"#Kunstinstallation
         }},
     }
