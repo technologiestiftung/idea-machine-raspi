@@ -72,8 +72,9 @@ cd idea-machine-raspi-wiesbaden
 chmod +x setup.sh
 ./setup.sh
 ```
-4. Venv starten
-4. Durcker ab und wieder anstecken
+
+4. Adjust environment variables
+4. unplug the printer and plug it back in
 
 The script automatically installs:
 
@@ -82,7 +83,7 @@ The script automatically installs:
 - Python venv with all dependencies
 - `.env` with broker IP
 
-4. Adjust environment variables (if needed)
+
 
 5. Replace example logo in "assets/logo.png"
 
