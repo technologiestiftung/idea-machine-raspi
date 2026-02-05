@@ -74,8 +74,7 @@ chmod +x setup.sh
 ```
 
 4. Adjust environment variables
-5. Replace example logo in "assets/logo.png"
-4. unplug the printer and plug it back in
+5. unplug the printer and plug it back in
 
 The script automatically installs:
 
@@ -84,9 +83,26 @@ The script automatically installs:
 - Python venv with all dependencies
 - `.env` with broker IP
 
-6. for testing start the app locally with:
+5. Replace example logo in "assets/logo.png"
+
+6. Start the app with:
+
+stop service:
+
+```bash
+sudo systemctl stop idea-machine.service
+```
+
+run python locally:
+
 ```bash
 python main.py
+```
+
+restart service:
+
+```bash
+sudo systemctl start idea-machine.service
 ```
 
 ## Printer
