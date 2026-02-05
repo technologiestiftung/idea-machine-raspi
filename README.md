@@ -58,7 +58,7 @@ This code is on a Raspberry Pi. The Raspberry Pi functions as an MQTT broker, wh
 https://github.com/technologiestiftung/idea-machine-raspi-wiesbaden/tree/feat/LEDs
 
 ```bash
-chmod +x requ.sh 
+chmod +x setup.sh 
 ./requ.sh
 ```
 

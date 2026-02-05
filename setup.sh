@@ -1,5 +1,4 @@
 #!/bin/bash
-#chmod +x requ.sh
 
 echo "=== Systemupdate ==="
 sudo apt-get update
@@ -38,9 +37,10 @@ python3 -m venv --system-site-packages /home/wiesbaden2026/idea-machine-raspi-wi
 echo "=== Python Pakete installieren ==="
 source /home/wiesbaden2026/idea-machine-raspi-wiesbaden/wiesbaden-env/bin/activate
 pip install --upgrade pip
-pip install paho-mqtt openai
+# pip install paho-mqtt openai
+pip install -r requirements.txt
 
-echo "=== requirements_jim.txt erzeugen ==="
-pip freeze > /home/wiesbaden2026/idea-machine-raspi-wiesbaden/requirements.txt
+# echo "=== requirements.txt erzeugen ==="
+# pip freeze > /home/wiesbaden2026/idea-machine-raspi-wiesbaden/requirements.txt
 
 echo "=== Setup fertig ==="
