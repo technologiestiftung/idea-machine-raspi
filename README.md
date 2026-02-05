@@ -41,12 +41,13 @@ You can use it on GitHub just by commenting on PRs and issues:
 - [ ] Add your project description
 - [ ] Get fancy shields at https://shields.io
 
-## Idea Machine Rasberry Pi  
+## Idea Machine Rasberry Pi
 
 This code is on a Raspberry Pi. The Raspberry Pi functions as an MQTT broker, which receives data from the smart cubes (see here:). The blue LEDs indicate whether each cube has established a connection to the broker. These turn on and remain on as soon as the cube has established a connection to the Pi. The sides of the dice are assigned to specific terms that are stored on the Pi. These can be customised to suit your needs. Now you have to press the buzzer until the green LED flashes. This transfers the terms to an LLM, which generates a futuristic text from them and prints it out via a thermal printer.
 
 ### Required hardware:
- Raspberry Pi (Raspberry Pi 5 4 GB)   
+
+Raspberry Pi (Raspberry Pi 5 4 GB)  
  A thermal POS printer (58 mm)  
  A Wi-Fi interface such as a router  
  Internet  
@@ -55,13 +56,13 @@ This code is on a Raspberry Pi. The Raspberry Pi functions as an MQTT broker, wh
  Power bank
 
 ## Installation
+
 https://github.com/technologiestiftung/idea-machine-raspi-wiesbaden/tree/feat/LEDs
 
 ```bash
-chmod +x setup.sh 
-./requ.sh
+chmod +x setup.sh
+./setup.sh
 ```
-
 
 Go to folder:  
 Run requirements.txt.
@@ -70,11 +71,10 @@ Adjust the values to suit your requirements.
 cp .env.example .env
 
 ## Printer
+
 How to get the most out of the printer. For example, to create a LOGO on the bong, the LOGO must be saved as a PNG file. The font must also be completely black and the background transparent.
 
 Follow these steps to find out the printer specifications and insert them into the code.
-
-
 
 ## Contributors
 

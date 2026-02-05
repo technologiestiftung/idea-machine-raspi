@@ -16,6 +16,23 @@ EOF'
 sudo systemctl restart mosquitto
 sudo systemctl enable mosquitto
 
+echo "=== .env konfigurieren ==="
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ENV_FILE="$SCRIPT_DIR/.env"
+ENV_EXAMPLE="$SCRIPT_DIR/.env.example"
+
+# IP-Adresse des Pis ermitteln
+BROKER_IP=$(hostname -I | awk '{print $1}')
+
+if [ ! -f "$ENV_FILE" ]; then
+    cp "$ENV_EXAMPLE" "$ENV_FILE"
+    echo "BROKER_IP=$BROKER_IP" >> "$ENV_FILE"
+else
+    sed -i "s/^BROKER_IP=.*/BROKER_IP=$BROKER_IP/" "$ENV_FILE"
+fi
+
+echo "Broker IP gesetzt: $BROKER_IP"
+
 echo "=== CUPS & Drucker installieren ==="
 sudo apt-get install -y cups
 
@@ -29,7 +46,7 @@ sudo cupsenable Termo
 sudo cupsaccept Termo
 
 echo "Testdruck:"
-echo "Hallo Test" | lp -d Thermo
+echo "Hallo Test" | lp -d Termo
 
 echo "=== Python venv erstellen ==="
 python3 -m venv --system-site-packages /home/wiesbaden2026/idea-machine-raspi-wiesbaden/wiesbaden-env
@@ -37,10 +54,6 @@ python3 -m venv --system-site-packages /home/wiesbaden2026/idea-machine-raspi-wi
 echo "=== Python Pakete installieren ==="
 source /home/wiesbaden2026/idea-machine-raspi-wiesbaden/wiesbaden-env/bin/activate
 pip install --upgrade pip
-# pip install paho-mqtt openai
 pip install -r requirements.txt
-
-# echo "=== requirements.txt erzeugen ==="
-# pip freeze > /home/wiesbaden2026/idea-machine-raspi-wiesbaden/requirements.txt
 
 echo "=== Setup fertig ==="
