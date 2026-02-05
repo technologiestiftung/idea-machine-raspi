@@ -74,6 +74,7 @@ chmod +x setup.sh
 ```
 
 4. Adjust environment variables
+5. Replace example logo in "assets/logo.png"
 4. unplug the printer and plug it back in
 
 The script automatically installs:
@@ -83,11 +84,7 @@ The script automatically installs:
 - Python venv with all dependencies
 - `.env` with broker IP
 
-
-
-5. Replace example logo in "assets/logo.png"
-
-6. Start the app with:
+6. for testing start the app locally with:
 ```bash
 python main.py
 ```

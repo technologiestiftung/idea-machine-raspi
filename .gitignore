@@ -277,3 +277,5 @@ venv/
 __pycache__/
 **/postcard/
 
+.lgd-nfy*
+
