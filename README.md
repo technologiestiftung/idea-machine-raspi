@@ -57,18 +57,28 @@ Raspberry Pi (Raspberry Pi 5 4 GB)
 
 ## Installation
 
-https://github.com/technologiestiftung/idea-machine-raspi-wiesbaden/tree/feat/LEDs
+1. Clone the repository:
+
+```bash
+git clone https://github.com/technologiestiftung/idea-machine-raspi-wiesbaden.git
+cd idea-machine-raspi-wiesbaden
+```
+
+2. Run setup:
 
 ```bash
 chmod +x setup.sh
 ./setup.sh
 ```
 
-Go to folder:  
-Run requirements.txt.
+The script automatically installs:
 
-Adjust the values to suit your requirements.
-cp .env.example .env
+- Mosquitto MQTT Broker
+- CUPS & printer configuration
+- Python venv with all dependencies
+- `.env` with broker IP
+
+3. Adjust environment variables (if needed)
 
 ## Printer
 
