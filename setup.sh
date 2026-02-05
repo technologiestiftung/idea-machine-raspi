@@ -26,10 +26,8 @@ BROKER_IP=$(hostname -I | awk '{print $1}')
 
 if [ ! -f "$ENV_FILE" ]; then
     cp "$ENV_EXAMPLE" "$ENV_FILE"
-    echo "BROKER_IP=$BROKER_IP" >> "$ENV_FILE"
-else
-    sed -i "s/^BROKER_IP=.*/BROKER_IP=$BROKER_IP/" "$ENV_FILE"
 fi
+sed -i "s/^BROKER_IP=.*/BROKER_IP=$BROKER_IP/" "$ENV_FILE"
 
 echo "Broker IP gesetzt: $BROKER_IP"
 
