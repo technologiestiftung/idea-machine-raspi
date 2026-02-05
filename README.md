@@ -57,14 +57,16 @@ Raspberry Pi (Raspberry Pi 5 4 GB)
 
 ## Installation
 
-1. Clone the repository:
+1. establish connection with PI
+
+2. Clone the repository:
 
 ```bash
 git clone https://github.com/technologiestiftung/idea-machine-raspi-wiesbaden.git
 cd idea-machine-raspi-wiesbaden
 ```
 
-2. Run setup:
+3. Run setup:
 
 ```bash
 chmod +x setup.sh
@@ -78,9 +80,9 @@ The script automatically installs:
 - Python venv with all dependencies
 - `.env` with broker IP
 
-3. Adjust environment variables (if needed)
+4. Adjust environment variables (if needed)
 
-4. Replace example logo in "assets/logo.png"
+5. Replace example logo in "assets/logo.png"
 
 ## Printer
 
