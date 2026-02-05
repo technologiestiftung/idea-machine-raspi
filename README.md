@@ -80,6 +80,8 @@ The script automatically installs:
 
 3. Adjust environment variables (if needed)
 
+4. Replace example logo in "assets/logo.png"
+
 ## Printer
 
 How to get the most out of the printer. For example, to create a LOGO on the bong, the LOGO must be saved as a PNG file. The font must also be completely black and the background transparent.
