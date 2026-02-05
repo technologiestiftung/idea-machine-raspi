@@ -15,9 +15,9 @@ def generate_ai_prompt(dice_text):
       "role": "system",
       "content": """
         Antworte NUR auf Deutsch.
-        Maximal 500 Zeichen.
         Persönlich, optimistisch, zukunftsorientiert und inspirierend.
         Zukunftsperspektive: Jahr 2050, schreibe an dich selbst 2026.
+        Der Text MUSS Maximal 500 Zeichen lang sein.
         Der Text MUSS mit exakt folgendem Satz beginnen:
         "In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050."
       """
