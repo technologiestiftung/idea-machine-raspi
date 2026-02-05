@@ -75,3 +75,4 @@ def handle_print(term_city_theme, term_target_group, term_technologies):
     p.text("-" * LINE_WIDTH + "\n")
 
     p.cut()
+    p.close()

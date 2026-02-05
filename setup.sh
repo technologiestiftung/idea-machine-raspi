@@ -48,6 +48,12 @@ sudo cupsaccept Termo
 echo "Testdruck:"
 echo "Hallo Test" | lp -d Termo
 
+echo "=== USB-Berechtigungen für Drucker setzen ==="
+echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0456", ATTRS{idProduct}=="0808", MODE="0666"' | sudo tee /etc/udev/rules.d/99-escpos.rules
+sudo udevadm control --reload-rules
+
+echo "Drucker bitte ab- und wieder anstecken!"
+
 echo "=== Python venv erstellen ==="
 python3 -m venv --system-site-packages "$SCRIPT_DIR/wiesbaden-env"
 
@@ -55,5 +61,26 @@ echo "=== Python Pakete installieren ==="
 source "$SCRIPT_DIR/wiesbaden-env/bin/activate"
 pip install --upgrade pip
 pip install -r requirements.txt
+
+echo "=== Systemd Service einrichten ==="
+sudo bash -c "cat > /etc/systemd/system/idea-machine.service <<EOF
+[Unit]
+Description=Idea Machine Wiesbaden
+After=network.target
+
+[Service]
+Type=simple
+User=$USER
+WorkingDirectory=$SCRIPT_DIR
+ExecStart=$SCRIPT_DIR/wiesbaden-env/bin/python main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF"
+
+sudo systemctl daemon-reload
+sudo systemctl enable idea-machine.service
+sudo systemctl start idea-machine.service
 
 echo "=== Setup fertig ==="
