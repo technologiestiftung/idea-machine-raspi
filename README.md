@@ -57,53 +57,50 @@ Raspberry Pi (Raspberry Pi 5 4 GB)
 
 ## Installation
 
-1. establish connection with PI
+1. Establish connection with Pi
 
 2. Clone the repository:
-
 ```bash
 git clone https://github.com/technologiestiftung/idea-machine-raspi-wiesbaden.git
 cd idea-machine-raspi-wiesbaden
 ```
 
 3. Run setup:
-
 ```bash
 chmod +x setup.sh
 ./setup.sh
 ```
 
-4. Adjust environment variables
-5. turn off printer
-6. unplug the printer, wait a second
-7. plug printer back in
-8. turn printer on
-
 The script automatically installs:
-
 - Mosquitto MQTT Broker
 - CUPS & printer configuration
 - Python venv with all dependencies
 - `.env` with broker IP
 
-5. Replace example logo in "assets/logo.png"
+4. Adjust environment variables in `.env`
 
-6. Start the app with:
+5. Replace example logo in `assets/logo.png`
 
-stop service:
+6. Printer initialization (important):
+   - Turn off printer
+   - Unplug printer, wait a few seconds
+   - Plug printer back in
+   - Turn printer on
 
+
+## Debugging
+
+Stop service:
 ```bash
 sudo systemctl stop idea-machine.service
 ```
 
-run python locally:
-
+Run Python locally:
 ```bash
 python main.py
 ```
 
-restart service:
-
+Restart service:
 ```bash
 sudo systemctl start idea-machine.service
 ```
