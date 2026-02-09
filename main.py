@@ -63,7 +63,6 @@ try:
             button_active = False   
             print("Button Status: AKTIV - Generiere Idee...")
 
-            # Würfelbegriffe holen
             term_city_theme = get_dice_begriff("gelb")
             term_target_group = get_dice_begriff("blau")
             term_technologies = get_dice_begriff("pink")
@@ -73,18 +72,24 @@ try:
             blink_thread = threading.Thread(target=blink, args=(BUTTON_GREEN_LED, blink_event))
             blink_thread.start()
 
-            handle_print(term_city_theme, term_target_group, term_technologies)
+            success = handle_print(term_city_theme, term_target_group, term_technologies)
 
-            # Button zurücksetzen - hier kannst du die LED steuern
-            state["button"]["pressed"] = False
-
-            # TODO: LED anschalten
             blink_event.clear()
             if blink_thread is not None:
                 blink_thread.join(timeout=1)
-            print("Button Status auf INAKTIV gesetzt")
-            GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
 
+            if success:
+                print("Druck erfolgreich")
+                GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
+            else:
+                print("Druckfehler - schnelles Blinken")
+                # Schnelles Blinken für 3 Sekunden
+                for _ in range(12):  # 12x für 3 Sek bei 0.25s
+                    GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
+                    time.sleep(0.125)
+                    GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
+                    time.sleep(0.125)
+                GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)  # Zurück zu Bereitschaft
 
         else:
             print("Button Status: INAKTIV")

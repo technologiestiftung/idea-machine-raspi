@@ -74,7 +74,10 @@ chmod +x setup.sh
 ```
 
 4. Adjust environment variables
-5. unplug the printer and plug it back in
+5. turn off printer
+6. unplug the printer, wait a second
+7. plug printer back in
+8. turn printer on
 
 The script automatically installs:
 
