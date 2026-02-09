@@ -18,12 +18,18 @@ def handle_print(term_city_theme, term_target_group, term_technologies):
     messages = generate_ai_prompt(dice_text)
 
     print("Generiere KI-Text...")
-    completion = openai_client.chat.completions.create(
-        model="gpt-4-turbo",
-        messages=messages
-    )
-    ai_text = completion.choices[0].message.content
-    print(f"Fertig! Text: {ai_text[:50]}...")
+    
+    try:
+        completion = openai_client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=messages
+        )
+        ai_text = completion.choices[0].message.content
+        print(f"Fertig! Text: {ai_text[:50]}...")
+    except Exception as e:
+        print(f"OpenAI API Fehler: {e}")
+        return "api_error"
+    
     timestamp = datetime.now().strftime("%d.%m.%Y %H:%M")
 
     # -------- DRUCKER --------
@@ -63,8 +69,8 @@ def handle_print(term_city_theme, term_target_group, term_technologies):
         p.cut()
         p.close()
         
-        return True  # Erfolg
+        return "success"
         
     except Exception as e:
         print(f"Druckerfehler: {e}")
-        return False  # Fehler
+        return "printer_error"

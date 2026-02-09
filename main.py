@@ -72,25 +72,33 @@ try:
             blink_thread = threading.Thread(target=blink, args=(BUTTON_GREEN_LED, blink_event))
             blink_thread.start()
 
-            success = handle_print(term_city_theme, term_target_group, term_technologies)
+            result = handle_print(term_city_theme, term_target_group, term_technologies)
 
             blink_event.clear()
             if blink_thread is not None:
                 blink_thread.join(timeout=1)
 
-            if success:
+            if result == "success":
                 print("Druck erfolgreich")
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
-            else:
+            elif result == "api_error":
+                print("API-Fehler - dreifaches Blinken")
+                # Dreifaches langsames Blinken für API-Fehler
+                for _ in range(3):
+                    GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
+                    time.sleep(0.5)
+                    GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
+                    time.sleep(0.5)
+                GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
+            else:  # printer_error
                 print("Druckfehler - schnelles Blinken")
-                # Schnelles Blinken für 3 Sekunden
-                for _ in range(12):  # 12x für 3 Sek bei 0.25s
+                # Schnelles Blinken für Druckfehler
+                for _ in range(12):
                     GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
                     time.sleep(0.125)
                     GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
                     time.sleep(0.125)
-                GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)  # Zurück zu Bereitschaft
-
+                GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
         else:
             print("Button Status: INAKTIV")
             blink_event.clear()

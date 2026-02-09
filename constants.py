@@ -4,7 +4,7 @@ Konfigurationskonstanten für das Ideenwürfel-Projekt
 
 # GPIO
 BUTTON_PIN = 4
-BUTTON_GREEN_LED = 23
+BUTTON_GREEN_LED = 6
 YELLOW_DICE_LED = 17
 PINK_DICE_LED = 27
 BLUE_DICE_LED = 22
