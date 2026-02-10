@@ -84,11 +84,11 @@ try:
             elif result == "api_error":
                 print("API-Fehler - dreifaches Blinken")
                 # Dreifaches langsames Blinken für API-Fehler
-                for _ in range(3):
+                for _ in range(12):
                     GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
-                    time.sleep(0.5)
+                    time.sleep(0.125)
                     GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
-                    time.sleep(0.5)
+                    time.sleep(0.125)
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
             else:  # printer_error
                 print("Druckfehler - schnelles Blinken")
