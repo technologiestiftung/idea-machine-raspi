@@ -79,6 +79,5 @@ EOF"
 
 sudo systemctl daemon-reload
 sudo systemctl enable idea-machine.service
-sudo systemctl start idea-machine.service
 
 echo "=== Setup fertig ==="
