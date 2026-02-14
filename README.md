@@ -48,12 +48,15 @@ This code is on a Raspberry Pi. The Raspberry Pi functions as an MQTT broker, wh
 ### Required hardware:
 
 Raspberry Pi (Raspberry Pi 5 4 GB)  
- A thermal POS printer (58 mm)  
- A Wi-Fi interface such as a router  
- Internet  
- Microcontroller with Wi-Fi  
- MPU sensor  
- Power bank
+A thermal POS printer (58 mm)  
+A Wi-Fi interface such as a router  
+Internet  
+Microcontroller with Wi-Fi  
+MPU sensor  
+Power bank 5000 - 10000 mAh
+Button/Buzzer
+LEDs
+
 
 ## Installation
 
@@ -121,6 +124,18 @@ sudo systemctl start idea-machine.service
 How to get the most out of the printer. For example, to create a LOGO on the bong, the LOGO must be saved as a PNG file. The font must also be completely black and the background transparent.
 
 Follow these steps to find out the printer specifications and insert them into the code.
+
+## CAD
+
+In the CAD folder, you will find files for 3D printing. It is a case for the Pi with a lid. There is a slight recess in the lid where the buzzer can be embedded. Holes for LEDs and access to the Pi's ports.
+
+## GPIO
+
+BUTTON = 23
+GREEN_LED = 4
+DICE_LED = 27, 17, 22
+
+Preliminary resistance 220 to 440 ohms for the LEDs.
 
 ## Contributors
 

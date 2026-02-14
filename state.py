@@ -23,11 +23,11 @@ state = {
             "6": "?"
         }},        
         "pink": {"value": None, "status": "disconnected","mapping":{#beige
-            "1": "Computerintelligenz & Daten",#Mixed Reality
+            "1": "Künstliche Inteligenz & Daten",#Mixed Reality
             "2": "Web & Apps",#Machine learning & AI
             "3": "Vernetzte Geräte & Sensoren",#Website & App
             "4": "Spielerische Technik",#IoT
-            "5": "Virtuelle Erweiterung der Realität",#"?"
+            "5": "Virtuelle Realität",#"?"
             "6": "?"#Kunstinstallation
         }},
     }
