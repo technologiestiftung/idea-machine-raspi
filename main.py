@@ -82,7 +82,6 @@ try:
                 print("Druck erfolgreich")
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
             elif result == "api_error":
-                print("API-Fehler - dreifaches Blinken")
                 # Dreifaches langsames Blinken für API-Fehler
                 for _ in range(12):
                     GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
@@ -113,3 +112,7 @@ except KeyboardInterrupt:
     print("Programm beendet")
     print("Finaler State:")
     print(f"  Button: {state['button']}")
+
+finally:
+    print("Clean up GPIO")
+    GPIO.cleanup()
