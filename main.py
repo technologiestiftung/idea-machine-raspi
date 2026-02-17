@@ -19,7 +19,7 @@ blink_thread = None
 
 # GPIO Setup
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(BUTTON_PIN, GPIO.IN)
+GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 GPIO.setup(YELLOW_DICE_LED, GPIO.OUT)
 GPIO.output(YELLOW_DICE_LED, GPIO.LOW)
