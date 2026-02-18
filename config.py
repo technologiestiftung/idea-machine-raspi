@@ -9,8 +9,8 @@ API_KEY = os.getenv("OPENAI_API_KEY")
 BROKER_IP = os.getenv("BROKER_IP")
 
 # Projektspezifische Konstanten
-PROJECT_TITLE = "KI-Würfel Zukunftswerk"
-PROJECT_SUBTITLE = "ZUKUNFSWERK WIESBADEN"
+PROJECT_TITLE = "KI-Würfel"
+PROJECT_SUBTITLE = "ZUKUNFTSWERK WIESBADEN"
 LOGO_PATH = "assets/logo.png"
 
 if not API_KEY:

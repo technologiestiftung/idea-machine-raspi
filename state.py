@@ -9,7 +9,7 @@ state = {
         "gelb": {"value": None, "status": "disconnected","mapping":{#orange
             "1": "Wohnen",
             "2": "Verkehr & Fortbewegung",
-            "3": "Stadtgestaltung",#Oeffentlicher Raum & Stadgestaltung
+            "3": "Stadtplanung",#Oeffentlicher Raum & Stadgestaltung
             "4": "Miteinander & Gemeinschaft",#Energie
             "5": "Digitale Stadt",#Klimaschutz
             "6": "?"
@@ -23,7 +23,7 @@ state = {
             "6": "?"
         }},        
         "pink": {"value": None, "status": "disconnected","mapping":{#beige
-            "1": "Künstliche Inteligenz & Daten",#Mixed Reality
+            "1": "Künstliche Intelligenz & Daten",#Mixed Reality
             "2": "Web & Apps",#Machine learning & AI
             "3": "Vernetzte Geräte & Sensoren",#Website & App
             "4": "Spielerische Technik",#IoT
