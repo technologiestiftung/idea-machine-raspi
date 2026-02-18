@@ -31,14 +31,14 @@ GPIO.setup(BUTTON_GREEN_LED, GPIO.OUT)
 GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)  
 
 
-# MQTT Setup
-mqtt_client = setup_mqtt(BROKER_IP)
+
 
 # ============ MAIN LOOP ============
 
 try:
     GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
-    
+    # MQTT Setup
+    mqtt_client = setup_mqtt(BROKER_IP)
 
     while True:
         # Button prüfen
@@ -99,7 +99,7 @@ try:
                     time.sleep(0.125)
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
         else:
-            print("Button Status: INAKTIV")
+            #print("Button Status: INAKTIV")
             blink_event.clear()
             if blink_thread is not None:
                 blink_thread.join(timeout=1)

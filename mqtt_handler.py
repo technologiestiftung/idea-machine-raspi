@@ -7,6 +7,8 @@ import threading
 from state import dice_update, get_dice_begriff
 from state import state, dice_update 
 from constants import YELLOW_DICE_LED, PINK_DICE_LED, BLUE_DICE_LED, BUTTON_GREEN_LED
+import time
+
 
 def on_connect(client, userdata, flags, rc):
     print("MQTT verbunden")
@@ -80,7 +82,15 @@ def setup_mqtt(broker_ip, port=1883):
     client.on_message = on_message
     client.reconnect_delay_set(min_delay=1, max_delay=30)
     
-    client.connect(broker_ip, port, 60)
+    # Retry-Schleife bis Verbindung klappt
+    while True:
+        try:
+            client.connect(broker_ip, port, 60)
+            print("MQTT verbunden!")
+            break
+        except OSError as e:
+            print(f"Netzwerk nicht erreichbar, warte 10 Sekunden... ({e})")
+            time.sleep(10)
     
     # Loop in eigenem Thread starten
     def mqtt_loop():
