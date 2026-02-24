@@ -109,9 +109,6 @@ try:
 
 except KeyboardInterrupt:
     GPIO.cleanup()
-    print("Programm beendet")
-    print("Finaler State:")
-    print(f"  Button: {state['button']}")
 
 finally:
     print("Clean up GPIO")
