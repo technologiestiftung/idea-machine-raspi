@@ -6,7 +6,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Idea Machine Rasberry Pi
+## Idea Machine Raspberry Pi
 
 This code is on a Raspberry Pi. The Raspberry Pi functions as an MQTT broker, which receives data from the smart cubes (see here:). The blue LEDs indicate whether each cube has established a connection to the broker. These turn on and remain on as soon as the cube has established a connection to the Pi. The sides of the dice are assigned to specific terms that are stored on the Pi. These can be customised to suit your needs. Now you have to press the buzzer until the green LED flashes. This transfers the terms to an LLM, which generates a futuristic text from them and prints it out via a thermal printer.
 
