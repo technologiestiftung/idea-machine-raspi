@@ -34,8 +34,8 @@ echo "Broker IP gesetzt: $BROKER_IP"
 echo "=== CUPS & Drucker installieren ==="
 sudo apt-get install -y cups
 
-# Drucker hinzufügen (Name: Thermo)
-sudo lpadmin -p Thermo \
+# Drucker hinzufügen (Name: Termo)
+sudo lpadmin -p Termo \
   -v "usb://STMicroelectronics/USB%20Portable%20Printer%20%20%20%20?serial=Printer" \
   -m drv:///cupsfilters.drv/textonly.ppd \
   -E

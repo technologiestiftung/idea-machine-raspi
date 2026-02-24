@@ -30,7 +30,7 @@ def generate_ai_prompt(dice_text):
       Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text}, entstehen.
       Die Begriffe müssen funktional miteinander verknüpft sein.
       Die Idee muss nicht realistisch sein und der Text soll einfach zu lesen sein.
-      Bitte gib der Ideen einen Namen
+      Bitte gib der Idee einen Namen
     """
     }
     
