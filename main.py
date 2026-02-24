@@ -13,8 +13,6 @@ from utils import blink
 
 #Thread-Setup for blinking LED
 blink_event = threading.Event()
-# Thread-Setup for blinking LEDs
-
 blink_thread = None
 
 # GPIO Setup
