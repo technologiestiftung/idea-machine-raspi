@@ -6,41 +6,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-# {repo-template}
-
-## TODO (after you generated the repo)
-
-- [ ] Review the content of the README.md and adjust to your liking
-- [ ] Read the README.md till the end and adjust the content licensing,
-      logos, etc (I know you stopped at tbd...)
-- [ ] Adjust the file [.github/CODEOWNERS](./.github/CODEOWNERS)
-- [ ] Adjust the files under [.github/ISSUE_TEMPLATE](./.github/ISSUE_TEMPLATE)
-- [ ] If you use staging and main branches use this template for [.github/renovate.json](./.github/renovate.json)
-
-```json
-{
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>technologiestiftung/renovate-config"],
-  "baseBranches": ["staging"]
-}
-```
-
-- [ ] Do you want to honor all kinds of contributions? Use [all-contributors](https://allcontributors.org/)
-
-```bash
-npx all-contributors-cli check
-npx all-contributors-cli add github-name doc
-```
-
-You can use it on GitHub just by commenting on PRs and issues:
-
-```plain
-@all-contributors please add @github-name for infrastructure, tests and code
-```
-
-- [ ] Add your project description
-- [ ] Get fancy shields at https://shields.io
-
 ## Idea Machine Rasberry Pi
 
 This code is on a Raspberry Pi. The Raspberry Pi functions as an MQTT broker, which receives data from the smart cubes (see here:). The blue LEDs indicate whether each cube has established a connection to the broker. These turn on and remain on as soon as the cube has established a connection to the Pi. The sides of the dice are assigned to specific terms that are stored on the Pi. These can be customised to suit your needs. Now you have to press the buzzer until the green LED flashes. This transfers the terms to an LLM, which generates a futuristic text from them and prints it out via a thermal printer.

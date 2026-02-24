@@ -1,13 +1,15 @@
 """
 MQTT Handler für Würfel-Kommunikation
 """
-import RPi.GPIO as GPIO
-import paho.mqtt.client as mqtt
 import threading
-from state import dice_update, get_dice_begriff
-from state import state, dice_update 
-from constants import YELLOW_DICE_LED, PINK_DICE_LED, BLUE_DICE_LED, BUTTON_GREEN_LED
 import time
+
+import paho.mqtt.client as mqtt
+import RPi.GPIO as GPIO
+
+from constants import (BLUE_DICE_LED, BUTTON_GREEN_LED, PINK_DICE_LED,
+                       YELLOW_DICE_LED)
+from state import dice_update, get_dice_begriff, state
 
 
 def on_connect(client, userdata, flags, rc):
@@ -66,7 +68,6 @@ def on_message(client, userdata, message):
             GPIO.output(PINK_DICE_LED, GPIO.LOW)
             print("Pink Würfel NICHT verbunden")
         else:    
-            print(f"Status Pinker Würfel: {payload}")
             print(f"Status Pinker Würfel: {payload}")
     else:
         print(f"Unbekanntes Thema: {message.topic}")
