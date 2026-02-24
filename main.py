@@ -29,8 +29,6 @@ GPIO.setup(BUTTON_GREEN_LED, GPIO.OUT)
 GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)  
 
 
-
-
 # ============ MAIN LOOP ============
 
 try:
@@ -65,7 +63,6 @@ try:
             term_target_group = get_dice_begriff("blau")
             term_technologies = get_dice_begriff("pink")
 
-            blink_event = threading.Event()
             blink_event.set()
             blink_thread = threading.Thread(target=blink, args=(BUTTON_GREEN_LED, blink_event))
             blink_thread.start()
