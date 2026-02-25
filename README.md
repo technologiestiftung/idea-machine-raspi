@@ -30,8 +30,8 @@ LEDs
 2. Clone the repository:
 
 ```bash
-git clone https://github.com/technologiestiftung/idea-machine-raspi-wiesbaden.git
-cd idea-machine-raspi-wiesbaden
+git clone https://github.com/technologiestiftung/idea-machine-raspi.git
+cd idea-machine-raspi
 ```
 
 3. Run setup:
