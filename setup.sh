@@ -53,24 +53,24 @@ sudo udevadm control --reload-rules
 echo "Drucker bitte ab- und wieder anstecken!"
 
 echo "=== Python venv erstellen ==="
-python3 -m venv --system-site-packages "$SCRIPT_DIR/wiesbaden-env"
+python3 -m venv --system-site-packages "$SCRIPT_DIR/idea-machine-env"
 
 echo "=== Python Pakete installieren ==="
-source "$SCRIPT_DIR/wiesbaden-env/bin/activate"
+source "$SCRIPT_DIR/idea-machine-env/bin/activate"
 pip install --upgrade pip
 pip install -r requirements.txt
 
 echo "=== Systemd Service einrichten ==="
 sudo bash -c "cat > /etc/systemd/system/idea-machine.service <<EOF
 [Unit]
-Description=Idea Machine Wiesbaden
+Description=Idea Machine
 After=network.target
 
 [Service]
 Type=simple
 User=$USER
 WorkingDirectory=$SCRIPT_DIR
-ExecStart=$SCRIPT_DIR/wiesbaden-env/bin/python main.py
+ExecStart=$SCRIPT_DIR/idea-machine-env/bin/python main.py
 Restart=always
 
 [Install]
