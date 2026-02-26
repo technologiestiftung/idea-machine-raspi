@@ -8,29 +8,35 @@ import RPi.GPIO as GPIO
 from PIL import Image, ImageOps
 
 
-def generate_ai_prompt(dice_text):
+def generate_ai_prompt(term_target_group, term_city_theme, term_technologies):
     """Erstellt den Prompt für die AI"""
+    print(f"dice_text1: {term_target_group}, dice_text2: {term_city_theme}, dice_text3: {term_technologies}")
+
+    dice_text1 = term_target_group
+    dice_text2 = term_city_theme
+    dice_text3 = term_technologies
 
     system_message = {
       "role": "system",
       "content": """
-        Antworte NUR auf Deutsch.
-        Persönlich, optimistisch, zukunftsorientiert und inspirierend.
-        Zukunftsperspektive: Jahr 2050, schreibe an dich selbst 2026.
-        Der Text MUSS Maximal 500 Zeichen lang sein.
-        Der Text MUSS mit exakt folgendem Satz beginnen:
-        In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050.
+        Antworte NUR auf Deutsch. Persönlich, engagiert, humorvoll und inspirierend. 
+        Antworte mit dem Wortschatz und dem Wissen einer Person, die sich mit folgenden Themen auskennt: Digitale Technologien, Open-Source-Software, Arbeitsweisen und Strukturen verschiedener Kultursparten, Logiken öffentlicher Verwaltung.
+        Du plädierst tendenziell FÜR Open-Source-Lösungen, gemeinsame Standards und digitale Kooperation in der Kulturszene. 
+        Der Text MUSS maximal 500 Zeichen lang sein.
+        Hinweis: Die Sprechstunde beim kulturBigital-HelpDesk ist ein kostenloses Angebot für die Kulturszene. Dort helfen Digitalexpert:innen Kulturakteur:innen bei der Planung und Umsetzung von Digitalvorhaben.
       """
       }
 
     user_message = {
     "role": "user",
     "content": f"""
-      Erzeuge EINE inspirierende, konkrete Idee für ein lebenswertes Wiesbaden.
-      Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text}, entstehen.
-      Die Begriffe müssen funktional miteinander verknüpft sein.
-      Die Idee muss nicht realistisch sein und der Text soll einfach zu lesen sein.
-      Bitte gib der Idee einen Namen
+        Erzeuge EIN Szenario, in dem ein:e {dice_text1} das Ziel {dice_text2} mithilfe EINER von dir auszuwählenden digitalen Technologie UND der zusätzlichen Lösungszutat {dice_text3} erreicht. 
+        Das Szenario MUSS berufstypische Kompetenzen oder Routinen oder Machtpositionen von {dice_text1} aktiv nutzen. 
+        Das Szenario MUSS zeigen, wie genau die von dir ausgewählte digitale Technologie hilft, das Ziel {dice_text2} zu erreichen.
+        Das Szenario MUSS zeigen, wie genau die Lösungszutat {dice_text3} hilft, das Ziel {dice_text2} zu erreichen.
+        Das Szenario MUSS mit dem Wort Als beginnen. Auf das Wort Als MUSS das Wort {dice_text1} folgen. 
+        Das Szenario MUSS in der Du-Ansprache formuliert sein, zum Beispiel: Als Sammlungskurator:in im Museum analysierst du die Sammlung.
+        Das Szenario muss nicht realistisch sein und der Text soll einfach zu lesen sein.
     """
     }
     

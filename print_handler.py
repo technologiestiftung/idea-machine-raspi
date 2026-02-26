@@ -8,14 +8,13 @@ from config import API_KEY, LOGO_PATH, PROJECT_SUBTITLE, PROJECT_TITLE
 from utils import generate_ai_prompt, process_image_for_print
 
 
-def handle_print(term_city_theme, term_target_group, term_technologies):
+def handle_print(term_character, term_goal, term_solution):
     openai_client = OpenAI(api_key=API_KEY)
     LINE_WIDTH = 32
 
     # -------- TEXT GENERATION --------
     headline = "Verwendete Begriffe:"
-    dice_text = f"Stadtthema: {term_city_theme}\n Zielgruppe: {term_target_group}\n Technologien: {term_technologies}"
-    messages = generate_ai_prompt(dice_text)
+    messages = generate_ai_prompt(term_character, term_goal, term_solution)
 
     print("Generiere KI-Text...")
     
@@ -51,10 +50,10 @@ def handle_print(term_city_theme, term_target_group, term_technologies):
         p.text("=" * LINE_WIDTH + "\n\n")
         p.text(f"{headline}\n")
         
-        wrapped_gelb = textwrap.fill(term_city_theme, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        wrapped_blau = textwrap.fill(term_target_group, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        wrapped_pink = textwrap.fill(term_technologies, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        p.text(f"{wrapped_gelb}\n{wrapped_blau}\n{wrapped_pink}\n")
+        wrapped_character = textwrap.fill(term_character, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        wrapped_goal = textwrap.fill(term_goal, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        wrapped_solution = textwrap.fill(term_solution, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        p.text(f"{wrapped_character}\n{wrapped_goal}\n{wrapped_solution}\n")
         p.text("-" * LINE_WIDTH + "\n\n")
 
         p.set(align='left')

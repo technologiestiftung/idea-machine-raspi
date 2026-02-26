@@ -59,15 +59,15 @@ try:
             button_active = False   
             print("Button Status: AKTIV - Generiere Idee...")
 
-            term_city_theme = get_dice_begriff("gelb")
-            term_target_group = get_dice_begriff("blau")
-            term_technologies = get_dice_begriff("pink")
+            term_character = get_dice_begriff("gelb")
+            term_goal = get_dice_begriff("blau")
+            term_solution = get_dice_begriff("pink")
 
             blink_event.set()
             blink_thread = threading.Thread(target=blink, args=(BUTTON_GREEN_LED, blink_event))
             blink_thread.start()
 
-            result = handle_print(term_city_theme, term_target_group, term_technologies)
+            result = handle_print(term_character, term_goal, term_solution)
 
             blink_event.clear()
             if blink_thread is not None:

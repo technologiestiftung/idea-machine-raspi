@@ -6,29 +6,29 @@ state = {
     "button": {"pressed": False, "last_press": None},
     
     "dice": {
-        "gelb": {"value": None, "status": "disconnected","mapping":{#orange
-            "1": "Wohnen",
-            "2": "Verkehr & Fortbewegung",
-            "3": "Stadtplanung",#Oeffentlicher Raum & Stadgestaltung
-            "4": "Miteinander & Gemeinschaft",#Energie
-            "5": "Digitale Stadt",#Klimaschutz
-            "6": "?"
+        "gelb": {"value": None, "status": "disconnected","mapping":{ # Charakterwürfel
+            "1": "Sammlungskurator:in eines Museums",
+            "2": "Technische:r Direktor:in am Theater",
+            "3": "Performance-Künstler:in in einem Kollektiv",
+            "4": "Personalmitarbeiter:in eines Opernhauses",
+            "5": "Kommunikationsmanager:in eines Literaturhauses",
+            "6": "Outreach-Referent:in einer Gedenkstätte"
         }},
-        "blau": {"value": None, "status": "disconnected","mapping":{
-            "1": "Bürger:innen",
-            "2": "Kinder & Jugendliche",#Verwaltungsangestellte
-            "3": "Verwaltungspersonal",#Marginalisierte Gruppe
-            "4": "Forscher:innen",
-            "5": "Schwächere Gruppen",#Unternehmer:innen
-            "6": "?"
+        "blau": {"value": None, "status": "disconnected","mapping":{ # Zielwürfel
+            "1": "Sichtbarkeit der eigenen Angebote steigern",
+            "2": "Im Team effizienter zusammenarbeiten",
+            "3": "Neue künstlerische Formate entwickeln",
+            "4": "Digitale Barrierefreiheit erhöhen",
+            "5": "IT-Sicherheit erhöhen",
+            "6": "Digitale Souveränität steigern"
         }},        
-        "pink": {"value": None, "status": "disconnected","mapping":{#beige
-            "1": "Künstliche Intelligenz & Daten",#Mixed Reality
-            "2": "Web & Apps",#Machine learning & AI
-            "3": "Vernetzte Geräte & Sensoren",#Website & App
-            "4": "Spielerische Technik",#IoT
-            "5": "Virtuelle Realität",#"?"
-            "6": "?"#Kunstinstallation
+        "pink": {"value": None, "status": "disconnected","mapping":{ # Lösungszutat
+            "1": "30 Stunden Arbeitszeit",
+            "2": "Sprechstunde beim kulturBdigital-HelpDesk",
+            "3": "Ein persönliches Meeting mit der Geschäftsführung",
+            "4": "Ein ehrenamtlicher IT-Admin",
+            "5": "Eine Tarnkappe",
+            "6": "50.000 Euro von einem:einer anonymen Spender:in"
         }},
     }
 }

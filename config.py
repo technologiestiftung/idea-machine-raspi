@@ -10,7 +10,7 @@ BROKER_IP = os.getenv("BROKER_IP")
 
 # Projektspezifische Konstanten
 PROJECT_TITLE = "KI-Würfel"
-PROJECT_SUBTITLE = "ZUKUNFTSWERK WIESBADEN"
+PROJECT_SUBTITLE = "kulturBdigital"
 LOGO_PATH = "assets/logo.png"
 
 if not API_KEY:
