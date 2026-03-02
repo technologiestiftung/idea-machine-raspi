@@ -6,29 +6,29 @@ state = {
     "button": {"pressed": False, "last_press": None},
     
     "dice": {
-        "gelb": {"value": None, "status": "disconnected","mapping":{#orange
+        "gelb": {"value": None, "status": "disconnected","mapping":{
             "1": "Wohnen",
             "2": "Verkehr & Fortbewegung",
-            "3": "Stadtplanung",#Oeffentlicher Raum & Stadgestaltung
-            "4": "Miteinander & Gemeinschaft",#Energie
-            "5": "Digitale Stadt",#Klimaschutz
+            "3": "Stadtplanung",
+            "4": "Miteinander & Gemeinschaft",
+            "5": "Digitale Stadt",
             "6": "?"
         }},
         "blau": {"value": None, "status": "disconnected","mapping":{
             "1": "Bürger:innen",
-            "2": "Kinder & Jugendliche",#Verwaltungsangestellte
-            "3": "Verwaltungspersonal",#Marginalisierte Gruppe
+            "2": "Kinder & Jugendliche",
+            "3": "Verwaltungspersonal",
             "4": "Forscher:innen",
-            "5": "Schwächere Gruppen",#Unternehmer:innen
+            "5": "Schwächere Gruppen",
             "6": "?"
         }},        
-        "pink": {"value": None, "status": "disconnected","mapping":{#beige
-            "1": "Künstliche Intelligenz & Daten",#Mixed Reality
-            "2": "Web & Apps",#Machine learning & AI
-            "3": "Vernetzte Geräte & Sensoren",#Website & App
-            "4": "Spielerische Technik",#IoT
-            "5": "Virtuelle Realität",#"?"
-            "6": "?"#Kunstinstallation
+        "pink": {"value": None, "status": "disconnected","mapping":{
+            "1": "Künstliche Intelligenz & Daten",
+            "2": "Web & Apps",
+            "3": "Vernetzte Geräte & Sensoren",
+            "4": "Spielerische Technik",
+            "5": "Virtuelle Realität",
+            "6": "?"
         }},
     }
 }
@@ -53,7 +53,6 @@ def get_dice_begriff(dice_name):
     if dice and dice["value"]:
         begriff = dice["mapping"].get(dice["value"], "N/A")
 
-        # Wenn "?" gewürfelt wurde, zufälligen Begriff wählen
         if begriff == "?":
             available = [v for k, v in dice["mapping"].items() if v != "?" and k != dice["value"]]
             if available:
