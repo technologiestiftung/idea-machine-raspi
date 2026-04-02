@@ -8,6 +8,24 @@ from config import API_KEY, LOGO_PATH, PROJECT_SUBTITLE, PROJECT_TITLE
 from utils import generate_ai_prompt, process_image_for_print
 
 
+# import os
+
+# from mistralai.client import Mistral
+
+# client = Mistral(api_key=os.environ.get("MISTRAL_API_KEY"))
+
+# inputs = [
+#     {"role":"user","content":"Hello!"}
+# ]
+
+# response = client.beta.conversations.start(
+#     agent_id="ag_019d24132a6f7557b8e52e6cc2c16d9d",
+#     agent_version=0,
+#     inputs=inputs,
+# )
+
+# print(response)
+
 def handle_print(term_character, term_goal, term_solution):
     openai_client = OpenAI(api_key=API_KEY)
     LINE_WIDTH = 32
