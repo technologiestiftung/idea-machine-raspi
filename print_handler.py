@@ -32,11 +32,28 @@ def handle_print(dice_a, dice_b, dice_c):
         term_goal = "N/A"
         term_solution = "N/A"
         
+
         for entry in response.outputs:
             if entry.type == "message.output":
                 for chunk in entry.content:
                     if chunk.type == "text":
-                        data = json.loads(chunk.text)
+                        print("RAW RESPONSE:", repr(chunk.text))
+                        text = chunk.text.strip()
+
+                        # remove any markdown wrapping
+                        if text.startswith("```"):
+                            text = text.replace("```json", "").replace("```", "").strip()
+
+                        try:
+                            data = json.loads(text)
+                            ai_text = data["text"]
+                            term_character = data["person"]
+                            term_goal = data["ziel"]
+                            term_solution = data["zutat"]
+                        except json.JSONDecodeError:
+                            print("Kein gültiges JSON:", repr(text))
+                            ai_text = text
+
                         ai_text = data["text"]
                         term_character = data["person"]
                         term_goal = data["ziel"]
