@@ -15,6 +15,3 @@ BLUE_DICE_LED = 22
 # Drucker
 PRINTER_NAME = "Termo"
 PRINTER_WIDTH = 32 # Zeichen für 58mm Thermodrucker
-
-# OpenAI
-MAX_CHARS = 350

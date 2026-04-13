@@ -7,9 +7,8 @@ import time
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 
-from constants import (BLUE_DICE_LED, BUTTON_GREEN_LED, PINK_DICE_LED,
-                       YELLOW_DICE_LED)
-from state import dice_update, get_dice_begriff, state
+from constants import BLUE_DICE_LED, PINK_DICE_LED, YELLOW_DICE_LED
+from state import dice_update, state
 
 
 def on_connect(client, userdata, flags, rc):
@@ -32,13 +31,13 @@ def on_message(client, userdata, message):
     
     if message.topic == "dice/gelb":
         dice_update("gelb", value=payload)
-        print(f"gelb dice: {payload} -> {get_dice_begriff('gelb')}")
+        print(f"gelb dice: {payload}")
     elif message.topic == "dice/blau":
         dice_update("blau", value=payload)
-        print(f"Blauer Würfel: {payload} -> {get_dice_begriff('blau')}")
+        print(f"Blauer Würfel: {payload}")
     elif message.topic == "dice/pink":
         dice_update("pink", value=payload)
-        print(f"Pinker Würfel: {payload} -> {get_dice_begriff('pink')}")
+        print(f"Pinker Würfel: {payload}")
     elif message.topic == "dice/gelb/status":
         dice_update("gelb", status=payload)
         if state["dice"]["gelb"]["status"] == "verbunden":

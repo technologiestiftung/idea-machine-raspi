@@ -8,7 +8,7 @@ from constants import (BLUE_DICE_LED, BUTTON_GREEN_LED, BUTTON_PIN,
                        PINK_DICE_LED, YELLOW_DICE_LED)
 from mqtt_handler import setup_mqtt
 from print_handler import handle_print
-from state import button_pressed, get_dice_begriff, state
+from state import button_pressed, state
 from utils import blink
 
 #Thread-Setup for blinking LED
@@ -59,15 +59,15 @@ try:
             button_active = False   
             print("Button Status: AKTIV - Generiere Idee...")
 
-            term_character = get_dice_begriff("gelb")
-            term_goal = get_dice_begriff("blau")
-            term_solution = get_dice_begriff("pink")
+            dice_a = state["dice"]["gelb"]["value"]
+            dice_b = state["dice"]["blau"]["value"]
+            dice_c = state["dice"]["pink"]["value"]
 
             blink_event.set()
             blink_thread = threading.Thread(target=blink, args=(BUTTON_GREEN_LED, blink_event))
             blink_thread.start()
 
-            result = handle_print(term_character, term_goal, term_solution)
+            result = handle_print(dice_a, dice_b, dice_c)
 
             blink_event.clear()
             if blink_thread is not None:
