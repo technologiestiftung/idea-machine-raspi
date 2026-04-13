@@ -1,6 +1,6 @@
 python-escpos==3.1
 CairoSVG==2.8.2
-mistralai[agents]==2.3.2
+mistralai==2.3.2
 dotenv==0.9.9
 paho-mqtt==2.1.0
 pyusb

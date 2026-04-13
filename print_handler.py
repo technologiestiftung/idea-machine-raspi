@@ -26,38 +26,35 @@ def handle_print(dice_a, dice_b, dice_c):
             inputs=[{"role": "user", "content": user_message}]
         )
         
-        # Extract text from Mistral response (original working code)
+        # Extract text from Mistral response
         ai_text = ""
         term_character = "N/A"
         term_goal = "N/A"
         term_solution = "N/A"
-        
 
         for entry in response.outputs:
             if entry.type == "message.output":
                 for chunk in entry.content:
                     if chunk.type == "text":
-                        print("RAW RESPONSE:", repr(chunk.text))
                         text = chunk.text.strip()
 
-                        # remove any markdown wrapping
+                        # Remove optional markdown wrapping
                         if text.startswith("```"):
                             text = text.replace("```json", "").replace("```", "").strip()
 
                         try:
                             data = json.loads(text)
-                            ai_text = data["text"]
-                            term_character = data["person"]
-                            term_goal = data["ziel"]
-                            term_solution = data["zutat"]
+                            ai_text = data.get("text", "")
+                            # New agent format
+                            term_character = data.get("dice_a", "N/A")
+                            term_goal = data.get("dice_b", "N/A")
+                            term_solution = data.get("dice_c", "N/A")
+                            if ai_text:
+                                break
                         except json.JSONDecodeError:
-                            print("Kein gültiges JSON:", repr(text))
-                            ai_text = text
-
-                        ai_text = data["text"]
-                        term_character = data["person"]
-                        term_goal = data["ziel"]
-                        term_solution = data["zutat"]
+                            continue
+                if ai_text:
+                    break
         
         if not ai_text:
             raise ValueError("No text returned from Mistral agent")
@@ -65,8 +62,6 @@ def handle_print(dice_a, dice_b, dice_c):
         print(f"Fertig! Text: {ai_text[:50]}...")
     except Exception as e:
         print(f"Mistral API Fehler: {e}")
-        import traceback
-        traceback.print_exc()
         return "api_error"
     
     timestamp = datetime.now().strftime("%d.%m.%Y %H:%M")
