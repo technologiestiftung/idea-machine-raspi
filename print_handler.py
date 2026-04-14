@@ -16,7 +16,7 @@ def handle_print(term_character, term_goal, term_solution):
 
     # -------- TEXT GENERATION --------
     headline = "Verwendete Begriffe:"
-    user_message = f"PERSON:{term_character} | ZIEL:{term_goal} | ZUTAT:{term_solution}"
+    user_message = f"PERSON: {term_character} | ZIEL: {term_goal} | ZUTAT: {term_solution}"
 
     print("Generiere KI-Text...")
     

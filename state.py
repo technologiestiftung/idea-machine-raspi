@@ -7,28 +7,28 @@ state = {
     
     "dice": {
         "gelb": {"value": None, "status": "disconnected","mapping":{ # Charakterwürfel
-            "1": "Sammlungskurator:in eines Museums",
-            "2": "Technische:r Direktor:in am Theater",
-            "3": "Performance-Künstler:in in einem Kollektiv",
-            "4": "Personalmitarbeiter:in eines Opernhauses",
-            "5": "Kommunikationsmanager:in eines Literaturhauses",
-            "6": "Outreach-Referent:in einer Gedenkstätte"
+            "1": "Sammlungskurator:in (Museum)",
+            "2": "Technische:r Direktor:in (Theater)",
+            "3": "Performance-Künstler:in (Kollektiv)",
+            "4": "Personalmitarbeiter:in (Opernhaus)",
+            "5": "Kommunikationsmanager:in (Literaturhaus)",
+            "6": "Outreach-Referent:in (Gedenkstätte)"
         }},
         "blau": {"value": None, "status": "disconnected","mapping":{ # Zielwürfel
-            "1": "Sichtbarkeit der eigenen Angebote steigern",
-            "2": "Im Team effizienter zusammenarbeiten",
-            "3": "Neue künstlerische Formate entwickeln",
-            "4": "Digitale Barrierefreiheit erhöhen",
-            "5": "IT-Sicherheit erhöhen",
-            "6": "Digitale Souveränität steigern"
+            "1": "Sichtbarkeit steigern",
+            "2": "Team-Zusammenarbeit",
+            "3": "Neue Formate",
+            "4": "Barrierefreiheit",
+            "5": "IT-Sicherheit",
+            "6": "Digitale Souveränität"
         }},        
         "pink": {"value": None, "status": "disconnected","mapping":{ # Lösungszutat
             "1": "30 Stunden Arbeitszeit",
-            "2": "Sprechstunde beim kulturBdigital-HelpDesk",
-            "3": "Ein persönliches Meeting mit der Geschäftsführung",
-            "4": "Ein ehrenamtlicher IT-Admin",
+            "2": "HelpDesk-Sprechstunde",
+            "3": "Meeting mit Geschäftsführung",
+            "4": "Ehrenamtlicher IT-Admin",
             "5": "Eine Tarnkappe",
-            "6": "50.000 Euro von einem:einer anonymen Spender:in"
+            "6": "50.000 € (anonym)"
         }},
     }
 }
