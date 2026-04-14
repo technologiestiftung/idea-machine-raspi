@@ -21,25 +21,20 @@ def handle_print(term_character, term_goal, term_solution):
     print("Generiere KI-Text...")
     
     try:
-        response = mistral_client.beta.conversations.start(
+        response = mistral_client.agents.complete(
             agent_id=MISTRAL_AGENT_ID,
-            inputs=[{"role": "user", "content": user_message}]
+            messages=[{"role": "user", "content": user_message}],
+            response_format={"type": "text"}
         )
         
-        # Extract text from Mistral response (original working code)
-        ai_text = ""
-        
-        for entry in response.outputs:
-            if entry.type == "message.output":
-                for chunk in entry.content:
-                    if chunk.type == "text":
-                        data = json.loads(chunk.text)
-                        ai_text = data["text"]
+        ai_text = response.choices[0].message.content
+
+        if isinstance(ai_text, list):
+            ai_text = "".join(chunk.text for chunk in ai_text if hasattr(chunk, 'text'))
         
         if not ai_text:
             raise ValueError("No text returned from Mistral agent")
-        
-        print(f"Fertig! Text: {ai_text[:50]}...")
+
     except Exception as e:
         print(f"Mistral API Fehler: {e}")
         import traceback
