@@ -1,50 +1,49 @@
+import json
 import textwrap
 from datetime import datetime
 
 from escpos.printer import Usb
-from openai import OpenAI
+from mistralai.client import Mistral
 
-from config import API_KEY, LOGO_PATH, PROJECT_SUBTITLE, PROJECT_TITLE
-from utils import generate_ai_prompt, process_image_for_print
+from config import (LOGO_PATH, MISTRAL_AGENT_ID, MISTRAL_API_KEY,
+                    PROJECT_SUBTITLE, PROJECT_TITLE)
+from utils import process_image_for_print
 
-
-# import os
-
-# from mistralai.client import Mistral
-
-# client = Mistral(api_key=os.environ.get("MISTRAL_API_KEY"))
-
-# inputs = [
-#     {"role":"user","content":"Hello!"}
-# ]
-
-# response = client.beta.conversations.start(
-#     agent_id="ag_019d24132a6f7557b8e52e6cc2c16d9d",
-#     agent_version=0,
-#     inputs=inputs,
-# )
-
-# print(response)
 
 def handle_print(term_character, term_goal, term_solution):
-    openai_client = OpenAI(api_key=API_KEY)
+    mistral_client = Mistral(api_key=MISTRAL_API_KEY)
     LINE_WIDTH = 32
 
     # -------- TEXT GENERATION --------
     headline = "Verwendete Begriffe:"
-    messages = generate_ai_prompt(term_character, term_goal, term_solution)
+    user_message = f"PERSON:{term_character} | ZIEL:{term_goal} | ZUTAT:{term_solution}"
 
     print("Generiere KI-Text...")
     
     try:
-        completion = openai_client.chat.completions.create(
-            model="gpt-4-turbo",
-            messages=messages
+        response = mistral_client.beta.conversations.start(
+            agent_id=MISTRAL_AGENT_ID,
+            inputs=[{"role": "user", "content": user_message}]
         )
-        ai_text = completion.choices[0].message.content
+        
+        # Extract text from Mistral response (original working code)
+        ai_text = ""
+        
+        for entry in response.outputs:
+            if entry.type == "message.output":
+                for chunk in entry.content:
+                    if chunk.type == "text":
+                        data = json.loads(chunk.text)
+                        ai_text = data["text"]
+        
+        if not ai_text:
+            raise ValueError("No text returned from Mistral agent")
+        
         print(f"Fertig! Text: {ai_text[:50]}...")
     except Exception as e:
-        print(f"OpenAI API Fehler: {e}")
+        print(f"Mistral API Fehler: {e}")
+        import traceback
+        traceback.print_exc()
         return "api_error"
     
     timestamp = datetime.now().strftime("%d.%m.%Y %H:%M")
