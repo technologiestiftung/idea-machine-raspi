@@ -1,3 +1,5 @@
+import signal
+import sys
 import threading
 import time
 
@@ -10,6 +12,14 @@ from mqtt_handler import setup_mqtt
 from print_handler import handle_print
 from state import button_pressed, get_dice_begriff, state
 from utils import blink
+
+def handle_exit(signum, frame):
+    print("Signal empfangen, räume GPIO auf...")
+    GPIO.cleanup()
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, handle_exit)
+signal.signal(signal.SIGINT, handle_exit)
 
 #Thread-Setup for blinking LED
 blink_event = threading.Event()
