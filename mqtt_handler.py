@@ -32,13 +32,16 @@ def on_message(client, userdata, message):
     
     if message.topic == "dice/gelb":
         dice_update("gelb", value=payload)
-        print(f"gelb dice: {payload} -> {get_dice_begriff('gelb')}")
+        info = get_dice_begriff('gelb')
+        print(f"Gelber Würfel: {payload} -> {info['print']}")
     elif message.topic == "dice/blau":
         dice_update("blau", value=payload)
-        print(f"Blauer Würfel: {payload} -> {get_dice_begriff('blau')}")
+        info = get_dice_begriff('blau')
+        print(f"Blauer Würfel: {payload} -> {info['print']}")
     elif message.topic == "dice/pink":
         dice_update("pink", value=payload)
-        print(f"Pinker Würfel: {payload} -> {get_dice_begriff('pink')}")
+        info = get_dice_begriff('pink')
+        print(f"Pinker Würfel: {payload} -> {info['print']}")
     elif message.topic == "dice/gelb/status":
         dice_update("gelb", status=payload)
         if state["dice"]["gelb"]["status"] == "verbunden":

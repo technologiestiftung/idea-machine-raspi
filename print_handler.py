@@ -18,9 +18,7 @@ def handle_print(
     label_c="ZUTAT"
 ):
     """
-    Beispiele für Labels:
-    - Mistral: PERSON / ZIEL / ZUTAT
-    - OpenAI alt: Stadtthema / Zielgruppe / Technologien
+    dice_a/b/c sind Dicts mit keys: prompt, print, institution (optional)
     """
 
     mistral_client = Mistral(api_key=MISTRAL_API_KEY)
@@ -29,10 +27,20 @@ def handle_print(
     # -------- TEXT GENERATION --------
     headline = "Verwendete Begriffe:"
 
+    # Prompt-Texte für die KI
+    prompt_a = dice_a["prompt"]
+    prompt_b = dice_b["prompt"]
+    prompt_c = dice_c["prompt"]
+
+    # Institution dem Person-Prompt anfügen
+    institution = dice_a.get("institution")
+    if institution:
+        prompt_a = f"{prompt_a} ({institution})"
+
     user_message = (
-        f"{label_a}: {dice_a} | "
-        f"{label_b}: {dice_b} | "
-        f"{label_c}: {dice_c}"
+        f"{label_a}: {prompt_a} | "
+        f"{label_b}: {prompt_b} | "
+        f"{label_c}: {prompt_c}"
     )
 
     print("Generiere KI-Text...")
@@ -89,9 +97,10 @@ def handle_print(
 
         p.text(f"{headline}\n")
 
-        wrapped_a = textwrap.fill(dice_a, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        wrapped_b = textwrap.fill(dice_b, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        wrapped_c = textwrap.fill(dice_c, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        # Print-Texte für den Bon
+        wrapped_a = textwrap.fill(dice_a["print"], width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        wrapped_b = textwrap.fill(dice_b["print"], width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        wrapped_c = textwrap.fill(dice_c["print"], width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
 
         p.text(f"{wrapped_a}\n{wrapped_b}\n{wrapped_c}\n")
         p.text("-" * LINE_WIDTH + "\n\n")
