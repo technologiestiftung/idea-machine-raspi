@@ -1,4 +1,3 @@
-import json
 import textwrap
 from datetime import datetime
 
@@ -10,28 +9,48 @@ from config import (LOGO_PATH, MISTRAL_AGENT_ID, MISTRAL_API_KEY,
 from utils import process_image_for_print
 
 
-def handle_print(term_character, term_goal, term_solution):
+def handle_print(
+    dice_a,
+    dice_b,
+    dice_c,
+    label_a="PERSON",
+    label_b="ZIEL",
+    label_c="ZUTAT"
+):
+    """
+    Beispiele für Labels:
+    - Mistral: PERSON / ZIEL / ZUTAT
+    - OpenAI alt: Stadtthema / Zielgruppe / Technologien
+    """
+
     mistral_client = Mistral(api_key=MISTRAL_API_KEY)
     LINE_WIDTH = 32
 
     # -------- TEXT GENERATION --------
     headline = "Verwendete Begriffe:"
-    user_message = f"PERSON: {term_character} | ZIEL: {term_goal} | ZUTAT: {term_solution}"
+
+    user_message = (
+        f"{label_a}: {dice_a} | "
+        f"{label_b}: {dice_b} | "
+        f"{label_c}: {dice_c}"
+    )
 
     print("Generiere KI-Text...")
-    
+
     try:
         response = mistral_client.agents.complete(
             agent_id=MISTRAL_AGENT_ID,
             messages=[{"role": "user", "content": user_message}],
             response_format={"type": "text"}
         )
-        
+
         ai_text = response.choices[0].message.content
 
         if isinstance(ai_text, list):
-            ai_text = "".join(chunk.text for chunk in ai_text if hasattr(chunk, 'text'))
-        
+            ai_text = "".join(
+                chunk.text for chunk in ai_text if hasattr(chunk, "text")
+            )
+
         if not ai_text:
             raise ValueError("No text returned from Mistral agent")
 
@@ -40,7 +59,7 @@ def handle_print(term_character, term_goal, term_solution):
         import traceback
         traceback.print_exc()
         return "api_error"
-    
+
     timestamp = datetime.now().strftime("%d.%m.%Y %H:%M")
 
     # -------- DRUCKER --------
@@ -48,10 +67,17 @@ def handle_print(term_character, term_goal, term_solution):
         p = Usb(0x0456, 0x0808, in_ep=0x81, out_ep=0x3, profile="POS-5890")
         p.hw("init")
 
-        processed_image = process_image_for_print(LOGO_PATH, target_width=384)
+        processed_image = process_image_for_print(
+            LOGO_PATH,
+            target_width=384
+        )
 
         if processed_image:
-            p.image(processed_image, high_density_vertical=True, high_density_horizontal=True)
+            p.image(
+                processed_image,
+                high_density_vertical=True,
+                high_density_horizontal=True
+            )
         else:
             print("Fehler beim Verarbeiten des Bildes")
 
@@ -60,28 +86,30 @@ def handle_print(term_character, term_goal, term_solution):
         p.text("=" * LINE_WIDTH + "\n")
         p.text(f"{PROJECT_TITLE}\n{PROJECT_SUBTITLE}\n")
         p.text("=" * LINE_WIDTH + "\n\n")
+
         p.text(f"{headline}\n")
-        
-        wrapped_character = textwrap.fill(term_character, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        wrapped_goal = textwrap.fill(term_goal, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        wrapped_solution = textwrap.fill(term_solution, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
-        p.text(f"{wrapped_character}\n{wrapped_goal}\n{wrapped_solution}\n")
+
+        wrapped_a = textwrap.fill(dice_a, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        wrapped_b = textwrap.fill(dice_b, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        wrapped_c = textwrap.fill(dice_c, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+
+        p.text(f"{wrapped_a}\n{wrapped_b}\n{wrapped_c}\n")
         p.text("-" * LINE_WIDTH + "\n\n")
 
-        p.set(align='left')
-        wrapped_text = textwrap.fill(ai_text, width=LINE_WIDTH, break_long_words=True, break_on_hyphens=False)
+        p.set(align="left")
+        wrapped_text = textwrap.fill(ai_text, width=LINE_WIDTH)
         p.text(f"{wrapped_text}\n\n")
 
-        p.set(align='center')
+        p.set(align="center")
         p.text("-" * LINE_WIDTH + "\n")
         p.text(f"{timestamp}\n")
         p.text("-" * LINE_WIDTH + "\n")
 
         p.cut()
         p.close()
-        
+
         return "success"
-        
+
     except Exception as e:
         print(f"Druckerfehler: {e}")
         return "printer_error"
