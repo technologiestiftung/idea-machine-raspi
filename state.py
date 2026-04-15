@@ -8,33 +8,33 @@ state = {
     "dice": {
         "gelb": {"value": None, "status": "disconnected","mapping":{ # Charakterwürfel
             "1": {
-                "prompt": "Sammlungskurator:in eines Museums",
+                "prompt": "Sammlungskurator:in",
                 "print": "Sammlungskurator:in",
                 "institutions": ["Museum", "Theater", "Oper"]
             },
             "2": {
-                "prompt": "Technische:r Leiter:in am Theater",
+                "prompt": "Technische:r Leiter:in",
                 "print": "Technische Leitung",
                 "institutions": ["Museum", "Theater", "Oper"]
             },
             "3": {
-                "prompt": "Performance-Künstler:in in einem Kollektiv",
+                "prompt": "Performance-Künstler:in",
                 "print": "Performance-Künstler:in",
                 "institutions": ["Museum", "Theater", "Oper"]
             },
             "4": {
-                "prompt": "Personalmitarbeiter:in eines Opernhauses",
+                "prompt": "Personalmitarbeiter:in",
                 "print": "HR-Mitarbeiter:in",
                 "institutions": ["Museum", "Theater", "Oper"]
             },
             "5": {
-                "prompt": "Kommunikationsmanager:in eines Literaturhauses",
+                "prompt": "Kommunikationsmanager:in",
                 "print": "Kommunikationsmanager:in",
                 "institutions": ["Literaturhaus"]
             },
             "6": {
-                "prompt": "Outreach-Referent:in einer Gedenkstätte",
-                "print": "Outreach-Referent:in (Gedenkstätte)",
+                "prompt": "Outreach-Referent:in",
+                "print": "Outreach-Referent:in",
                 "institutions": ["Literaturhaus"]
             },
         }},
