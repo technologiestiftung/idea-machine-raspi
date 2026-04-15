@@ -15,6 +15,3 @@ BLUE_DICE_LED = 22
 # Drucker
 PRINTER_NAME = "Termo"
 PRINTER_WIDTH = 32
-
-# OpenAI
-MAX_CHARS = 350
