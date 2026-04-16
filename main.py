@@ -87,7 +87,7 @@ try:
                 print("Druck erfolgreich")
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
             elif result == "api_error":
-                # Dreifaches langsames Blinken für API-Fehler
+
                 for _ in range(12):
                     GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
                     time.sleep(0.125)
@@ -96,7 +96,6 @@ try:
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
             else:  # printer_error
                 print("Druckfehler - schnelles Blinken")
-                # Schnelles Blinken für Druckfehler
                 for _ in range(12):
                     GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
                     time.sleep(0.125)
