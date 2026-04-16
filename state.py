@@ -10,32 +10,85 @@ state = {
             "1": {
                 "prompt": "Sammlungskurator:in",
                 "print": "Sammlungskurator:in",
-                "institutions": ["Museum", "Theater", "Oper"]
+                "institutions": [
+                    "Museum",
+                    "Museum für zeitgenössische Kunst",
+                    "Museum für Naturkunde",
+                    "Archiv",
+                    "kulturhistorisches Museum",
+                    "Ausstellungshaus"
+                ]
             },
             "2": {
                 "prompt": "Technische:r Leiter:in",
                 "print": "Technische Leitung",
-                "institutions": ["Museum", "Theater", "Oper"]
+                "institutions": [
+                    "Theater",
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Kulturzentrum",
+                    "Opernhaus",
+                    "Konzerthaus",
+                    "Performance-Ort"
+                ]
             },
             "3": {
                 "prompt": "Performance-Künstler:in",
                 "print": "Performance-Künstler:in",
-                "institutions": ["Museum", "Theater", "Oper"]
+                "institutions": ["Kollektiv"]
             },
             "4": {
                 "prompt": "Personalmitarbeiter:in",
                 "print": "HR-Mitarbeiter:in",
-                "institutions": ["Museum", "Theater", "Oper"]
+                "institutions": [
+                    "Opernhaus",
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Theater",
+                    "Konzerthaus",
+                    "Literaturhaus",
+                    "Gedenkstätte",
+                    "Erinnerungsort",
+                    "Bibliothek",
+                    "Archiv",
+                    "Jugendkunstschule",
+                    "Musikschule",
+                    "Musiktheater"
+                ]
             },
             "5": {
                 "prompt": "Kommunikationsmanager:in",
                 "print": "Kommunikationsmanager:in",
-                "institutions": ["Literaturhaus"]
+                "institutions": [
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Theater",
+                    "Opernhaus",
+                    "Konzerthaus",
+                    "Literaturhaus",
+                    "Gedenkstätte",
+                    "Erinnerungsort",
+                    "Bibliothek",
+                    "Archiv",
+                    "Jugendkunstschule",
+                    "Musikschule",
+                    "Musiktheater"
+                ]
             },
             "6": {
                 "prompt": "Outreach-Referent:in",
                 "print": "Outreach-Referent:in",
-                "institutions": ["Literaturhaus"]
+                "institutions": [
+                    "Gedenkstätte",
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Theater",
+                    "Opernhaus",
+                    "Orchester",
+                    "Literaturhaus",
+                    "Musiktheater",
+                    "soziokulturelles Zentrum"
+                ]
             },
         }},
         "blau": {"value": None, "status": "disconnected","mapping":{ # Zielwürfel
@@ -82,7 +135,6 @@ def get_dice_begriff(dice_name):
         if entry is None:
             return {"prompt": "N/A", "print": "N/A", "institution": None}
 
-        # Altes Format (einfacher String, z.B. blau/pink)
         if isinstance(entry, str):
             if entry == "?":
                 available = [v for k, v in dice["mapping"].items() if v != "?" and k != dice["value"]]
@@ -92,7 +144,6 @@ def get_dice_begriff(dice_name):
             if isinstance(entry, str):
                 return {"prompt": entry, "print": entry, "institution": None}
 
-        # Neues Format (Dict mit prompt/print/institutions)
         institution = None
         if entry.get("institutions"):
             institution = random.choice(entry["institutions"])
