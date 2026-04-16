@@ -7,7 +7,7 @@ import time
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 
-from constants import (BLUE_DICE_LED, BUTTON_GREEN_LED, PINK_DICE_LED,
+from constants import (BLUE_DICE_LED, PINK_DICE_LED,
                        YELLOW_DICE_LED)
 from state import dice_update, get_dice_begriff, state
 
@@ -24,7 +24,6 @@ def on_connect(client, userdata, flags, rc):
 
 def on_disconnect(client, userdata, rc):
     print("MQTT Verbindung verloren")
-
 
 
 def on_message(client, userdata, message):
