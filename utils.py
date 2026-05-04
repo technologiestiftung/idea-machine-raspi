@@ -17,20 +17,19 @@ def generate_ai_prompt(dice_text):
         Antworte NUR auf Deutsch und versuche englische Wörter oder Namen zu vermeiden. 
         Antworte persönlich, optimistisch, zukunftsorientiert und inspirierend. 
         Nimm die Zukunftsperspektive ein! Jahr 2050: schreibe an dein Ich der Vergangenheit. 
-        Der Text MUSS Maximal 550 Zeichen lang sein. Dein Text muss einfach lesen sein, sodass jeder ihn versteht. 
-        Verzichte, wenn möglich, auch Schachtelsätze,. 
-        Der Text MUSS mit exakt folgendem Satz beginnen: In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050.
+        Der Text MUSS Maximal 540 Zeichen lang sein! Die maximale Länge deiner Antworten ist sehr wichtig. 
+        Dein Text muss einfach lesen sein, sodass jeder ihn versteht. Verzichte, wenn möglich, auch Schachtelsätze. 
+        Der Text MUSS mit einem Satz beginnen wie: "In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050" oder "Ich schreibe dir aus dem Wiesbaden des Jahres 2050." oder "Stell dir ein Wiesbaden vor...".
       """
       }
 
     user_message = {
     "role": "user",
     "content": f"""
-        Erzeuge EINE konkrete, greifbare Idee und sage wie genau diese Idee genau zu einem lebenswerten Wiesbaden beiträgt. 
-        Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text}, entstehen. 
-        Die Begriffe müssen funktional miteinander verknüpft sein. 
-        Die Idee muss nicht realistisch sein. 
-        Bitte gib der Idee einen Namen und baue ihn irgendwo in deiner Antwort ein.
+        Erzeuge EINE konkrete, greifbare Idee und beschreibe sie im Detail und/oder mit Beispielen. 
+        Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text} entstehen und ein lebenswertes Wiesbaden fördern. 
+        Die Begriffe müssen funktional miteinander verknüpft sein. Die Idee muss nicht realistisch sein. 
+        Bitte gib der Idee einen catchy, kreativen, kurzen Namen und baue ihn irgendwo in deiner Antwort ein.
     """
     }
     
