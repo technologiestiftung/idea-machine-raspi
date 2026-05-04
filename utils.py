@@ -14,23 +14,23 @@ def generate_ai_prompt(dice_text):
     system_message = {
       "role": "system",
       "content": """
-        Antworte NUR auf Deutsch.
-        Persönlich, optimistisch, zukunftsorientiert und inspirierend.
-        Zukunftsperspektive: Jahr 2050, schreibe an dich selbst 2026.
-        Der Text MUSS Maximal 500 Zeichen lang sein.
-        Der Text MUSS mit exakt folgendem Satz beginnen:
-        In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050.
+        Antworte NUR auf Deutsch und versuche englische Wörter oder Namen zu vermeiden. 
+        Antworte persönlich, optimistisch, zukunftsorientiert und inspirierend. 
+        Nimm die Zukunftsperspektive ein! Jahr 2050: schreibe an dein Ich der Vergangenheit. 
+        Der Text MUSS Maximal 550 Zeichen lang sein. Dein Text muss einfach lesen sein, sodass jeder ihn versteht. 
+        Verzichte, wenn möglich, auch Schachtelsätze,. 
+        Der Text MUSS mit exakt folgendem Satz beginnen: In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050.
       """
       }
 
     user_message = {
     "role": "user",
     "content": f"""
-      Erzeuge EINE inspirierende, konkrete Idee für ein lebenswertes Wiesbaden.
-      Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text}, entstehen.
-      Die Begriffe müssen funktional miteinander verknüpft sein.
-      Die Idee muss nicht realistisch sein und der Text soll einfach zu lesen sein.
-      Bitte gib der Idee einen Namen
+        Erzeuge EINE konkrete, greifbare Idee und sage wie genau diese Idee genau zu einem lebenswerten Wiesbaden beiträgt. 
+        Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text}, entstehen. 
+        Die Begriffe müssen funktional miteinander verknüpft sein. 
+        Die Idee muss nicht realistisch sein. 
+        Bitte gib der Idee einen Namen und baue ihn irgendwo in deiner Antwort ein.
     """
     }
     
