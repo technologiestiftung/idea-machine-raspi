@@ -46,14 +46,14 @@ def on_message(client, userdata, message):
             print("Gelber Würfel ist verbunden")
         elif state["dice"]["gelb"]["status"] == "getrennt":
             GPIO.output(YELLOW_DICE_LED, GPIO.LOW)
-            print("Blauer Würfel NICHT verbunden")
+            print("Gelber Würfel NICHT verbunden")
         else:    
-            print(f"Status yellow Würfel: {payload}")
+            print(f"Status Gelber Würfel: {payload}")
     elif message.topic == "dice/blau/status":
         dice_update("blau", status=payload)
         if state["dice"]["blau"]["status"] == "verbunden":
             GPIO.output(BLUE_DICE_LED, GPIO.HIGH)
-            print("Baluer Würfel ist verbunden")
+            print("Blauer Würfel ist verbunden")
         elif state["dice"]["blau"]["status"] == "getrennt":
             GPIO.output(BLUE_DICE_LED, GPIO.LOW)
             print("Blauer Würfel NICHT verbunden")
@@ -66,7 +66,7 @@ def on_message(client, userdata, message):
             print("Pinker Würfel ist verbunden")
         elif state["dice"]["pink"]["status"] == "getrennt":
             GPIO.output(PINK_DICE_LED, GPIO.LOW)
-            print("Pink Würfel NICHT verbunden")
+            print("Pinker Würfel NICHT verbunden")
         else:    
             print(f"Status Pinker Würfel: {payload}")
     else:
@@ -86,11 +86,11 @@ def setup_mqtt(broker_ip, port=1883):
     # Retry-Schleife bis Verbindung klappt
     while True:
         try:
-            client.connect(broker_ip, port, 60)
+            client.connect(broker_ip, port, 30)
             print("MQTT verbunden!")
             break
         except OSError as e:
-            print(f"Netzwerk nicht erreichbar, warte 10 Sekunden... ({e})")
+            print(f"Netzwerk nicht erreichbar, warte 30 Sekunden... ({e})")
             time.sleep(10)
     
     # Loop in eigenem Thread starten
