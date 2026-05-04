@@ -6,29 +6,29 @@ state = {
     "button": {"pressed": False, "last_press": None},
     
     "dice": {
-        "gelb": {"value": None, "status": "disconnected","mapping":{#orange
+        "gelb": {"value": None, "status": "disconnected","mapping":{
             "1": "Wohnen",
             "2": "Verkehr & Fortbewegung",
-            "3": "Stadtplanung",#Oeffentlicher Raum & Stadgestaltung
-            "4": "Miteinander & Gemeinschaft",#Digitale Stadt
-            "5": "Digitale Stadt",#Miteinander & Gemeinschaft
+            "3": "Stadtplanung",
+            "4": "Miteinander & Gemeinschaft",
+            "5": "Digitale Stadt",
             "6": "?"
         }},
         "blau": {"value": None, "status": "disconnected","mapping":{
             "1": "Bürger:innen",
-            "2": "Kinder & Jugendliche",#Verwaltungsangestellte
-            "3": "Verwaltungspersonal",#Marginalisierte Gruppe
+            "2": "Kinder & Jugendliche",
+            "3": "Verwaltungspersonal",
             "4": "Forscher:innen",
-            "5": "Schwächere Gruppen",#Unternehmer:innen
+            "5": "Schwächere Gruppen",
             "6": "?"
         }},        
         "pink": {"value": None, "status": "disconnected","mapping":{#beige
-            "1": "Künstliche Intelligenz & Daten",#Mixed Reality
-            "2": "Virtuelle Realität",#Web & Apps
-            "3": "Spielerische Technik",#Vernetzte Geräte & Sensoren
-            "4": "Vernetzte Geräte & Sensoren",#Spielerische Technik
-            "5": "Web & Apps",#Virtuelle Realität
-            "6": "?"#Kunstinstallation
+            "1": "Künstliche Intelligenz & Daten",
+            "2": "Virtuelle Realität",
+            "3": "Spielerische Technik",
+            "4": "Vernetzte Geräte & Sensoren",
+            "5": "Web & Apps",
+            "6": "?"
         }},
     }
 }
@@ -53,7 +53,6 @@ def get_dice_begriff(dice_name):
     if dice and dice["value"]:
         begriff = dice["mapping"].get(dice["value"], "N/A")
 
-        # Wenn "?" gewürfelt wurde, zufälligen Begriff wählen
         if begriff == "?":
             available = [v for k, v in dice["mapping"].items() if v != "?" and k != dice["value"]]
             if available:
