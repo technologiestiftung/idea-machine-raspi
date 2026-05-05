@@ -14,23 +14,21 @@ def generate_ai_prompt(dice_text):
     system_message = {
       "role": "system",
       "content": """
-        Antworte NUR auf Deutsch.
-        Persönlich, optimistisch, zukunftsorientiert und inspirierend.
-        Zukunftsperspektive: Jahr 2050, schreibe an dich selbst 2026.
-        Der Text MUSS Maximal 500 Zeichen lang sein.
-        Der Text MUSS mit exakt folgendem Satz beginnen:
-        In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050.
+        Antworte NUR auf Deutsch und versuche englische Wörter oder Namen zu vermeiden. Antworte persönlich, optimistisch, zukunftsorientiert und inspirierend. 
+        Nimm die Zukunftsperspektive ein! Jahr 2050: schreibe an dein Ich der Vergangenheit. Dein Text muss einfach zu lesen sein, sodass jeder ihn versteht. 
+        Der Text soll nicht zu langatmig sein. Verzichte, wenn möglich, auf Schachtelsätze und Wortwiederholungen. 
+        Der Text MUSS mit einem Satz beginnen wie: "In der Zukunft von Wiesbaden schreibe ich dir aus dem Jahr 2050" oder "Ich schreibe dir aus dem Wiesbaden des Jahres 2050." oder "Stell dir ein Wiesbaden vor...". Variiere das Intro immer selbstständig. 
+        Der Text MUSS Maximal 620 Zeichen mit Leerzeichen lang sein! Die maximale Länge deiner Antworten ist sehr wichtig und darf nicht überschritten werden!
       """
       }
 
     user_message = {
     "role": "user",
     "content": f"""
-      Erzeuge EINE inspirierende, konkrete Idee für ein lebenswertes Wiesbaden.
-      Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text}, entstehen.
-      Die Begriffe müssen funktional miteinander verknüpft sein.
-      Die Idee muss nicht realistisch sein und der Text soll einfach zu lesen sein.
-      Bitte gib der Idee einen Namen
+        Erzeuge EINE konkrete, greifbare Idee und beschreibe sie im Detail und/oder mit Beispielen. 
+        Die Idee MUSS aus der inhaltlichen Kombination aus den drei Bereichen mit den Begriffen: {dice_text} entstehen und ein lebenswertes Wiesbaden fördern. 
+        Alle Begriffe müssen funktional miteinander verknüpft sein. Die Idee muss nicht realistisch sein und soll inspirieren und neue Ideen anregen . 
+        Bitte gib der Idee einen einprägsamen, kreativen, kurzen Namen und baue ihn irgendwo in deiner Antwort ein.
     """
     }
     

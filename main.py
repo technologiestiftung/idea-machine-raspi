@@ -1,5 +1,7 @@
 import threading
 import time
+import signal
+import sys
 
 import RPi.GPIO as GPIO
 
@@ -11,9 +13,20 @@ from print_handler import handle_print
 from state import button_pressed, get_dice_begriff, state
 from utils import blink
 
+def handle_exit(signum, frame):
+    print("Signal empfangen, räume GPIO auf...")
+    blink_event.clear()
+    if blink_thread is not None:
+        blink_thread.join(timeout=1)
+    GPIO.cleanup()
+    sys.exit(0)
+
 #Thread-Setup for blinking LED
 blink_event = threading.Event()
 blink_thread = None
+
+signal.signal(signal.SIGTERM, handle_exit)
+signal.signal(signal.SIGINT, handle_exit)
 
 # GPIO Setup
 GPIO.setmode(GPIO.BCM)

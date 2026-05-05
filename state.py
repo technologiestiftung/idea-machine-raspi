@@ -22,12 +22,12 @@ state = {
             "5": "Schwächere Gruppen",
             "6": "?"
         }},        
-        "pink": {"value": None, "status": "disconnected","mapping":{
+        "pink": {"value": None, "status": "disconnected","mapping":{#beige
             "1": "Künstliche Intelligenz & Daten",
-            "2": "Web & Apps",
-            "3": "Vernetzte Geräte & Sensoren",
-            "4": "Spielerische Technik",
-            "5": "Virtuelle Realität",
+            "2": "Virtuelle Realität",
+            "3": "Spielerische Technik",
+            "4": "Vernetzte Geräte & Sensoren",
+            "5": "Web & Apps",
             "6": "?"
         }},
     }
