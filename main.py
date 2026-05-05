@@ -21,6 +21,7 @@ def handle_exit(signum, frame):
     GPIO.cleanup()
     sys.exit(0)
 
+#Thread-Setup for blinking LED
 blink_event = threading.Event()
 blink_thread = None
 
@@ -31,14 +32,10 @@ signal.signal(signal.SIGINT, handle_exit)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-GPIO.setup(YELLOW_DICE_LED, GPIO.OUT)
-GPIO.output(YELLOW_DICE_LED, GPIO.LOW)
-GPIO.setup(PINK_DICE_LED, GPIO.OUT)
-GPIO.output(PINK_DICE_LED, GPIO.LOW)
-GPIO.setup(BLUE_DICE_LED, GPIO.OUT)
-GPIO.output(BLUE_DICE_LED, GPIO.LOW)
-GPIO.setup(BUTTON_GREEN_LED, GPIO.OUT)
-GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)  
+GPIO.setup(YELLOW_DICE_LED, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(PINK_DICE_LED, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(BLUE_DICE_LED, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(BUTTON_GREEN_LED, GPIO.OUT, initial=GPIO.LOW)  
 
 
 # ============ MAIN LOOP ============
