@@ -75,6 +75,7 @@ sudo systemctl stop idea-machine.service
 Run Python locally:
 
 ```bash
+source "/home/kbd2026test/idea-machine-raspi/idea-machine-env/bin/activate"
 python main.py
 ```
 

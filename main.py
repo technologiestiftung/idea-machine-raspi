@@ -1,3 +1,5 @@
+import signal
+import sys
 import threading
 import time
 
@@ -11,9 +13,19 @@ from print_handler import handle_print
 from state import button_pressed, get_dice_begriff, state
 from utils import blink
 
-#Thread-Setup for blinking LED
+def handle_exit(signum, frame):
+    print("Signal empfangen, räume GPIO auf...")
+    blink_event.clear()
+    if blink_thread is not None:
+        blink_thread.join(timeout=1)
+    GPIO.cleanup()
+    sys.exit(0)
+
 blink_event = threading.Event()
 blink_thread = None
+
+signal.signal(signal.SIGTERM, handle_exit)
+signal.signal(signal.SIGINT, handle_exit)
 
 # GPIO Setup
 GPIO.setmode(GPIO.BCM)
@@ -59,15 +71,15 @@ try:
             button_active = False   
             print("Button Status: AKTIV - Generiere Idee...")
 
-            term_character = get_dice_begriff("gelb")
-            term_goal = get_dice_begriff("blau")
-            term_solution = get_dice_begriff("pink")
+            dice_character = get_dice_begriff("gelb")
+            dice_goal = get_dice_begriff("blau")
+            dice_solution = get_dice_begriff("pink")
 
             blink_event.set()
             blink_thread = threading.Thread(target=blink, args=(BUTTON_GREEN_LED, blink_event))
             blink_thread.start()
 
-            result = handle_print(term_character, term_goal, term_solution)
+            result = handle_print(dice_character, dice_goal, dice_solution)
 
             blink_event.clear()
             if blink_thread is not None:
@@ -77,7 +89,7 @@ try:
                 print("Druck erfolgreich")
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
             elif result == "api_error":
-                # Dreifaches langsames Blinken für API-Fehler
+
                 for _ in range(12):
                     GPIO.output(BUTTON_GREEN_LED, GPIO.LOW)
                     time.sleep(0.125)
@@ -86,7 +98,6 @@ try:
                 GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
             else:  # printer_error
                 print("Druckfehler - schnelles Blinken")
-                # Schnelles Blinken für Druckfehler
                 for _ in range(12):
                     GPIO.output(BUTTON_GREEN_LED, GPIO.HIGH)
                     time.sleep(0.125)

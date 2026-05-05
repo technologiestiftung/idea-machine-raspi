@@ -7,28 +7,105 @@ state = {
     
     "dice": {
         "gelb": {"value": None, "status": "disconnected","mapping":{ # Charakterwürfel
-            "1": "Sammlungskurator:in eines Museums",
-            "2": "Technische:r Direktor:in am Theater",
-            "3": "Performance-Künstler:in in einem Kollektiv",
-            "4": "Personalmitarbeiter:in eines Opernhauses",
-            "5": "Kommunikationsmanager:in eines Literaturhauses",
-            "6": "Outreach-Referent:in einer Gedenkstätte"
+            "1": {
+                "prompt": "Sammlungskurator:in",
+                "print": "Sammlungskurator:in",
+                "institutions": [
+                    "Museum",
+                    "Museum für zeitgenössische Kunst",
+                    "Museum für Naturkunde",
+                    "Archiv",
+                    "kulturhistorisches Museum",
+                    "Ausstellungshaus"
+                ]
+            },
+            "2": {
+                "prompt": "Technische:r Leiter:in",
+                "print": "Technische Leitung",
+                "institutions": [
+                    "Theater",
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Kulturzentrum",
+                    "Opernhaus",
+                    "Konzerthaus",
+                    "Performance-Ort"
+                ]
+            },
+            "3": {
+                "prompt": "Performance-Künstler:in",
+                "print": "Performance-Künstler:in",
+                "institutions": ["Kollektiv"]
+            },
+            "4": {
+                "prompt": "Personalmitarbeiter:in",
+                "print": "HR-Mitarbeiter:in",
+                "institutions": [
+                    "Opernhaus",
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Theater",
+                    "Konzerthaus",
+                    "Literaturhaus",
+                    "Gedenkstätte",
+                    "Erinnerungsort",
+                    "Bibliothek",
+                    "Archiv",
+                    "Jugendkunstschule",
+                    "Musikschule",
+                    "Musiktheater"
+                ]
+            },
+            "5": {
+                "prompt": "Kommunikationsmanager:in",
+                "print": "Kommunikationsmanager:in",
+                "institutions": [
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Theater",
+                    "Opernhaus",
+                    "Konzerthaus",
+                    "Literaturhaus",
+                    "Gedenkstätte",
+                    "Erinnerungsort",
+                    "Bibliothek",
+                    "Archiv",
+                    "Jugendkunstschule",
+                    "Musikschule",
+                    "Musiktheater"
+                ]
+            },
+            "6": {
+                "prompt": "Outreach-Referent:in",
+                "print": "Outreach-Referent:in",
+                "institutions": [
+                    "Gedenkstätte",
+                    "Museum",
+                    "Ausstellungshaus",
+                    "Theater",
+                    "Opernhaus",
+                    "Orchester",
+                    "Literaturhaus",
+                    "Musiktheater",
+                    "soziokulturelles Zentrum"
+                ]
+            },
         }},
         "blau": {"value": None, "status": "disconnected","mapping":{ # Zielwürfel
-            "1": "Sichtbarkeit der eigenen Angebote steigern",
-            "2": "Im Team effizienter zusammenarbeiten",
-            "3": "Neue künstlerische Formate entwickeln",
-            "4": "Digitale Barrierefreiheit erhöhen",
-            "5": "IT-Sicherheit erhöhen",
-            "6": "Digitale Souveränität steigern"
+            "1": {"prompt": "Sichtbarkeit der eigenen Angebote steigern", "print": "Sichtbarkeit"},
+            "2": {"prompt": "Im Team effizienter zusammenarbeiten", "print": "Effiziente Zusammenarbeit"},
+            "3": {"prompt": "Neue künstlerische Formate entwickeln", "print": "Künstlerische Formate"},
+            "4": {"prompt": "Digitale Barrierefreiheit erhöhen", "print": "Digitale Barrierefreiheit"},
+            "5": {"prompt": "IT-Sicherheit erhöhen", "print": "IT-Sicherheit"},
+            "6": {"prompt": "Digitale Souveränität steigern", "print": "Digitale Souveränität"}
         }},        
         "pink": {"value": None, "status": "disconnected","mapping":{ # Lösungszutat
-            "1": "30 Stunden Arbeitszeit",
-            "2": "Sprechstunde beim kulturBdigital-HelpDesk",
-            "3": "Ein persönliches Meeting mit der Geschäftsführung",
-            "4": "Ein ehrenamtlicher IT-Admin",
-            "5": "Eine Tarnkappe",
-            "6": "50.000 Euro von einem:einer anonymen Spender:in"
+            "1": {"prompt": "Weiterbildung", "print": "Weiterbildung"},
+            "2": {"prompt": "Vereinte Kräfte und Teamwork", "print": "Teamwork"},
+            "3": {"prompt": "Eine Anfrage aus der Öffentlichkeit", "print": "Öffentliches Interesse"},
+            "4": {"prompt": "Geld durch eine anonyme Spende", "print": "Geld"},
+            "5": {"prompt": "Vernetzung mit anderen Kulturakteur:innen", "print": "Vernetzung"},
+            "6": {"prompt": "Ein unerwarteter Zwischenfall", "print": "Zwischenfall"}
         }},
     }
 }
@@ -48,20 +125,36 @@ def dice_update(dice_name, value=None, status=None):
 
 
 def get_dice_begriff(dice_name):
-    """Holt den Begriff für den aktuellen Würfelwert"""
+    """Holt den Begriff für den aktuellen Würfelwert.
+    Gibt ein Dict zurück: {"prompt": str, "print": str, "institution": str|None}
+    """
     dice = state["dice"].get(dice_name)
     if dice and dice["value"]:
-        begriff = dice["mapping"].get(dice["value"], "N/A")
+        entry = dice["mapping"].get(dice["value"])
 
-        # Wenn "?" gewürfelt wurde, zufälligen Begriff wählen
-        if begriff == "?":
-            available = [v for k, v in dice["mapping"].items() if v != "?" and k != dice["value"]]
-            if available:
-                begriff = random.choice(available)
-                print(f"  → Zufällig gewählt: {begriff}")
-        
-        return begriff
-    return "N/A"
+        if entry is None:
+            return {"prompt": "N/A", "print": "N/A", "institution": None}
+
+        if isinstance(entry, str):
+            if entry == "?":
+                available = [v for k, v in dice["mapping"].items() if v != "?" and k != dice["value"]]
+                if available:
+                    entry = random.choice(available)
+                    print(f"  → Zufällig gewählt: {entry}")
+            if isinstance(entry, str):
+                return {"prompt": entry, "print": entry, "institution": None}
+
+        institution = None
+        if entry.get("institutions"):
+            institution = random.choice(entry["institutions"])
+
+        return {
+            "prompt": entry["prompt"],
+            "print": entry["print"],
+            "institution": institution
+        }
+
+    return {"prompt": "N/A", "print": "N/A", "institution": None}
 
 
 def update_timestamp():
