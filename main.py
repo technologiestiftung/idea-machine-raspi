@@ -15,15 +15,18 @@ from utils import blink
 
 def handle_exit(signum, frame):
     print("Signal empfangen, räume GPIO auf...")
+    blink_event.clear()
+    if blink_thread is not None:
+        blink_thread.join(timeout=1)
     GPIO.cleanup()
     sys.exit(0)
-
-signal.signal(signal.SIGTERM, handle_exit)
-signal.signal(signal.SIGINT, handle_exit)
 
 #Thread-Setup for blinking LED
 blink_event = threading.Event()
 blink_thread = None
+
+signal.signal(signal.SIGTERM, handle_exit)
+signal.signal(signal.SIGINT, handle_exit)
 
 # GPIO Setup
 GPIO.setmode(GPIO.BCM)
