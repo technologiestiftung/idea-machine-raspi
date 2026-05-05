@@ -100,12 +100,12 @@ state = {
             "6": {"prompt": "Digitale Souveränität steigern", "print": "Digitale Souveränität"}
         }},        
         "pink": {"value": None, "status": "disconnected","mapping":{ # Lösungszutat
-            "1": {"prompt": "30 Stunden Arbeitszeit", "print": "30h Arbeitszeit"},
-            "2": {"prompt": "Sprechstunde beim kulturBdigital-HelpDesk", "print": "Sprechstunde kBd-HelpDesk"},
-            "3": {"prompt": "Ein persönliches Meeting mit der Geschäftsführung", "print": "Meeting mit Geschäftsführung"},
-            "4": {"prompt": "Ein ehrenamtlicher IT-Admin", "print": "Ehrenamtlicher IT-Admin"},
-            "5": {"prompt": "Interview mit Lokalzeitung", "print": "Zeitungs-Interview"},
-            "6": {"prompt": "50.000 Euro von einem:einer anonymen Spender:in", "print": "50.000 Euro Spende (anonym)"}
+            "1": {"prompt": "Weiterbildung", "print": "Weiterbildung"},
+            "2": {"prompt": "Vereinte Kräfte und Teamwork", "print": "Teamwork"},
+            "3": {"prompt": "Eine Anfrage aus der Öffentlichkeit", "print": "Öffentliches Interesse"},
+            "4": {"prompt": "Geld durch eine anonyme Spende", "print": "Geld"},
+            "5": {"prompt": "Vernetzung mit anderen Kulturakteur:innen", "print": "Vernetzung"},
+            "6": {"prompt": "Ein unerwarteter Zwischenfall", "print": "Zwischenfall"}
         }},
     }
 }
