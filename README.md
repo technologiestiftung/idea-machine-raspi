@@ -32,6 +32,7 @@ LEDs
 ```bash
 git clone https://github.com/technologiestiftung/idea-machine-raspi.git
 cd idea-machine-raspi
+git switch <branch name>
 ```
 
 3. Run setup:
