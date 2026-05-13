@@ -64,7 +64,8 @@ echo "=== Systemd Service einrichten ==="
 sudo bash -c "cat > /etc/systemd/system/idea-machine.service <<EOF
 [Unit]
 Description=Idea Machine
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple
@@ -77,6 +78,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF"
 
+sudo systemctl enable systemd-networkd-wait-online.service
 sudo systemctl daemon-reload
 sudo systemctl enable idea-machine.service
 
