@@ -85,21 +85,18 @@ def setup_mqtt(broker_ip, port=1883):
     client.on_message = on_message
     client.reconnect_delay_set(min_delay=1, max_delay=30)
     
-    # Retry-Schleife bis Verbindung klappt
-    while True:
-        try:
-            client.connect(broker_ip, port, 60)
-            print("MQTT verbunden!")
-            break
-        except OSError as e:
-            print(f"Netzwerk nicht erreichbar, warte 10 Sekunden... ({e})")
-            time.sleep(10)
+    def mqtt_connect_loop():
+        while True:
+            try:
+                print("Versuche MQTT-Verbindung herzustellen...")
+                client.connect(broker_ip, port, 60)
+                print("MQTT verbunden!")
+                client.loop_forever()
+            except OSError as e:
+                print(f"Netzwerk nicht erreichbar, warte 10 Sekunden... ({e})")
+                time.sleep(10)
     
-    # Loop in eigenem Thread starten
-    def mqtt_loop():
-        client.loop_forever()
+    threading.Thread(target=mqtt_connect_loop, daemon=True).start()
     
-    threading.Thread(target=mqtt_loop, daemon=True).start()
-    
-    print("MQTT Handler gestartet")
+    print("MQTT Handler gestartet (Verbindung wird im Hintergrund aufgebaut)")
     return client
