@@ -91,6 +91,8 @@ def handle_print(
 
         p.text("\n\n")
         p.set(align='center')
+        p.text("www.kultur-b-digital.de\n")
+        p.set(align='center')
         p.text("=" * LINE_WIDTH + "\n")
         p.text(f"{PROJECT_TITLE}\n{PROJECT_SUBTITLE}\n")
         p.text("=" * LINE_WIDTH + "\n\n")
